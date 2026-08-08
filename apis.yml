@@ -1,0 +1,75 @@
+name: Infoway Real-time Market Data API
+description: >-
+  Real-time and historical financial market-data provider covering stocks (US, HK, China A-shares, Japan, South Korea,
+  India), forex, crypto (30+ exchanges), and commodities/futures. Offers REST/HTTP and WebSocket streaming APIs with
+  API-key authentication, plus a local MCP server and llms.txt documentation surface.
+url: https://infoway-real-time-market-data-api.apievangelist.com/apis.yml
+created: '2026-08-08'
+modified: '2026-08-08'
+specificationVersion: '0.21'
+tags:
+  - stock-api
+  - forex-api
+  - crypto-api
+  - commodities-api
+  - futures-api
+  - market-data
+  - real-time-data
+  - websocket
+  - financial-data
+  - fintech
+  - historical-data
+apis:
+  - name: Infoway REST/HTTP Market Data API
+    description: >-
+      GET/POST endpoints for symbol lists, basic info, trading days/hours, batch K-line (candlestick) queries, trades,
+      and market depth across stocks, crypto, forex, and futures. API-key header auth; response envelope {ret, msg,
+      traceId, data}.
+    humanURL: https://docs.infoway.io/en-docs
+    baseURL: https://data.infoway.io
+    tags:
+      - stock-api
+      - forex-api
+      - crypto-api
+      - commodities-api
+      - futures-api
+      - market-data
+      - real-time-data
+      - websocket
+      - financial-data
+      - fintech
+      - historical-data
+    properties:
+      - type: Documentation
+        url: https://docs.infoway.io/en-docs
+      - type: LLMsTxt
+        url: https://docs.infoway.io/llms.txt
+  - name: Infoway WebSocket Streaming API
+    description: >-
+      Persistent WebSocket connection for real-time candlesticks, trades, market depth, and news subscriptions with
+      millisecond-latency push. API-key authenticated.
+    humanURL: https://docs.infoway.io/websocket-api/endpoints.md
+    baseURL: https://data.infoway.io
+    tags:
+      - stock-api
+      - forex-api
+      - crypto-api
+      - commodities-api
+      - futures-api
+      - market-data
+      - real-time-data
+      - websocket
+      - financial-data
+      - fintech
+      - historical-data
+    properties:
+      - type: Documentation
+        url: https://docs.infoway.io/websocket-api/endpoints.md
+maintainers:
+  - FN: Infoway Real-time Market Data API
+    url: https://infoway.io/en
+generated:
+  by: apis.io/add
+  model: claude-opus-4-8
+  confidence: 93
+  at: '2026-08-08T07:31:04.745Z'
