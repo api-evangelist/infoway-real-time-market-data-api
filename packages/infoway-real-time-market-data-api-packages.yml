@@ -1,0 +1,73 @@
+generated: '2026-08-09'
+method: searched
+source: >-
+  https://docs.infoway.io/sdk-and-tools/readme.md (official SDK index) plus live registry checks against
+  pypi.org, registry.npmjs.org and repo1.maven.org on 2026-08-09
+packages:
+  - language: python
+    registry: pypi
+    name: infoway-sdk
+    version: 0.1.2
+    url: https://pypi.org/project/infoway-sdk/
+    install: pip install infoway-sdk
+    repository: https://github.com/infoway-api/infoway-sdk-python
+    docs: https://docs.infoway.io/sdk-and-tools/python-sdk.md
+    license: MIT
+    runtime: Python 3.9+
+    official: true
+    covers: [rest, websocket]
+    x-evidence: {url: https://pypi.org/pypi/infoway-sdk/json, http_status: 200, fetched: '2026-08-09'}
+  - language: javascript
+    registry: npm
+    name: infoway-sdk
+    version: 0.1.2
+    url: https://www.npmjs.com/package/infoway-sdk
+    install: npm install infoway-sdk
+    repository: https://github.com/infoway-api/infoway-sdk-nodejs
+    docs: https://docs.infoway.io/sdk-and-tools/nodejs-sdk.md
+    license: MIT
+    runtime: Node.js 18+ (TypeScript types shipped)
+    official: true
+    covers: [rest, websocket]
+    x-evidence: {url: https://registry.npmjs.org/infoway-sdk, http_status: 200, fetched: '2026-08-09'}
+  - language: java
+    registry: maven-central
+    name: io.infoway:infoway-sdk
+    version: 0.1.0
+    url: https://repo1.maven.org/maven2/io/infoway/infoway-sdk/
+    install: "implementation 'io.infoway:infoway-sdk:0.1.0'"
+    repository: https://github.com/infoway-api/infoway-sdk-java
+    docs: https://docs.infoway.io/sdk-and-tools/java-sdk.md
+    license: MIT
+    runtime: Java 17+ (OkHttp 4.x, Gson, SLF4J)
+    official: true
+    covers: [rest, websocket]
+    x-evidence: {url: https://repo1.maven.org/maven2/io/infoway/infoway-sdk/, http_status: 200, fetched: '2026-08-09'}
+  - language: python
+    registry: pypi
+    name: infoway-mcp-server
+    version: 0.1.0
+    url: https://pypi.org/project/infoway-mcp-server/
+    install: uvx infoway-mcp-server
+    repository: https://github.com/infoway-api/infoway-mcp-server
+    docs: https://docs.infoway.io/sdk-and-tools/mcp-server.md
+    runtime: Python 3.10+
+    official: true
+    kind: mcp-server
+    covers: [mcp]
+    x-evidence: {url: https://pypi.org/pypi/infoway-mcp-server/json, http_status: 200, fetched: '2026-08-09'}
+not_found:
+  registries_checked_without_a_first_party_package: [nuget, rubygems, packagist, crates.io, pkg.go.dev]
+reference_repositories:
+  - name: infoway-ai-advisor
+    url: https://github.com/infoway-api/infoway-ai-advisor
+    description: AI investment advisor powered by Claude and Infoway data
+    packaged: false
+  - name: infoway-quant-starter
+    url: https://github.com/infoway-api/infoway-quant-starter
+    description: Quantitative trading examples using the Infoway SDK
+    packaged: false
+  - name: infoway-exchange-toolkit
+    url: https://github.com/infoway-api/infoway-exchange-toolkit
+    description: Exchange integration reference implementations
+    packaged: false

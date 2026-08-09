@@ -1,0 +1,129 @@
+generated: '2026-08-09'
+method: derived
+source: >-
+  mcp/infoway-real-time-market-data-api-mcp.yml (tool list + inputSchemas parsed from
+  https://raw.githubusercontent.com/infoway-api/infoway-mcp-server/HEAD/src/infoway_mcp_server/server.py)
+  bound to openapi/infoway-real-time-market-data-api-openapi.yml operationIds using the server's own
+  _dispatch() routing and the official Python SDK REST paths
+  (https://github.com/infoway-api/infoway-sdk-python/tree/HEAD/src/infoway/rest).
+note: >-
+  The binding is unusually high-confidence for a derived crosswalk: the MCP server's _dispatch() function is
+  public source, and each branch names the exact SDK method, which in turn names the exact REST path. Where a
+  tool's REST path is NOT in the published OpenAPI it is recorded under mcp_only[] with the path the SDK
+  calls — those endpoints are real and documented in prose on docs.infoway.io, but Infoway has not published
+  an OpenAPI operation for them.
+
+surfaces:
+  openapi:
+    file: openapi/infoway-real-time-market-data-api-openapi.yml
+    operations: 13
+    gated: false
+    source: https://infoway.readme.io/reference/ (per-endpoint OpenAPI 3.0.0 documents, HTTP 200)
+  mcp:
+    server: infoway-mcp-server
+    transport: stdio
+    url: null
+    gated: false
+    tools_list_probe: >-
+      not applicable — stdio transport; there is no anonymous HTTP endpoint to POST tools/list against.
+      Schemas were read from the published source instead of introspected.
+  websocket:
+    endpoint: wss://data.infoway.io/ws?business={stock|crypto|common}&apikey=
+    asyncapi: asyncapi/infoway-real-time-market-data-api-streaming-asyncapi.yml
+    note: No MCP tool wraps the streaming surface — MCP is REST-only.
+  graphql: null
+
+crosswalk:
+  - tool: get_realtime_trade
+    category: realtime
+    rest:
+      - get_stockbatch_trade{codes}
+      - get_cryptobatch_trade{codes}
+      - get_commonbatch_trade{codes}
+    binding: rest
+    confidence: high
+    note: >-
+      Fans out on the market_type argument (stock|crypto|common|japan|india) to /{prefix}/batch_trade/{codes}.
+      The japan and india prefixes are real SDK sub-clients but have no OpenAPI operation published.
+  - tool: get_market_depth
+    category: realtime
+    rest:
+      - get_stockbatch_depth{codes}
+      - get_cryptobatch_depth{codes}
+      - get_commonbatch_depth{codes}
+    binding: rest
+    confidence: high
+    note: Same market_type fan-out to /{prefix}/batch_depth/{codes}.
+  - tool: get_kline
+    category: realtime
+    rest:
+      - get_stockbatch_kline{klineType}{klineNum}{codes}
+      - get_cryptobatch_kline{klineType}{klineNum}{codes}
+      - get_commonbatch_kline{klineType}{klineNum}{codes}
+    binding: rest
+    confidence: medium
+    note: >-
+      Same capability, different call shape. The SDK posts to /{prefix}/v2/batch_kline with a body, while the
+      published OpenAPI documents the v1 GET form /{prefix}/batch_kline/{klineType}/{klineNum}/{codes}. Both
+      are documented by Infoway; the OpenAPI covers only the GET form.
+  - tool: search_symbols
+    category: utility
+    rest:
+      - get_commonbasicsymbols
+    binding: rest
+    confidence: high
+    note: Calls basic.get_symbols() -> GET /common/basic/symbols with an optional market filter.
+
+mcp_only:
+  - tool: get_market_temperature
+    reason: SDK calls GET /common/v2/basic/market/temperature — no OpenAPI operation published for the v2 market family.
+  - tool: get_market_breadth
+    reason: SDK calls GET /common/v2/basic/market/breadth/{market} — not in the published OpenAPI.
+  - tool: get_global_indexes
+    reason: SDK calls GET /common/v2/basic/market/indexes — not in the published OpenAPI.
+  - tool: get_leading_industries
+    reason: SDK calls GET /common/v2/basic/market/leaders/{market} — not in the published OpenAPI.
+  - tool: get_industry_list
+    reason: SDK calls GET /common/v2/basic/plate/industry/{market} — not in the published OpenAPI.
+  - tool: get_concept_list
+    reason: SDK calls GET /common/v2/basic/plate/concept/{market} — not in the published OpenAPI.
+  - tool: get_plate_members
+    reason: SDK calls GET /common/v2/basic/plate/members/{plate_symbol} — not in the published OpenAPI.
+  - tool: get_plate_heatmap
+    reason: SDK calls GET /common/v2/basic/plate/chart/{market} — not in the published OpenAPI.
+  - tool: get_company_overview
+    reason: SDK calls GET /common/v2/basic/stock/company/{symbol} — not in the published OpenAPI.
+  - tool: get_stock_valuation
+    reason: SDK calls GET /common/v2/basic/stock/valuation/{symbol} — not in the published OpenAPI.
+  - tool: get_stock_ratings
+    reason: SDK calls GET /common/v2/basic/stock/ratings/{symbol} — not in the published OpenAPI.
+  - tool: get_stock_panorama
+    reason: SDK calls GET /common/v2/basic/stock/panorama/{symbol} — not in the published OpenAPI.
+  - tool: get_stock_drivers
+    reason: SDK calls GET /common/v2/basic/stock/drivers/{symbol} — not in the published OpenAPI.
+
+rest_only:
+  - capability: symbol metadata
+    operations:
+      - get_symbolsinfo
+    note: GET /common/basic/symbols/info — no MCP tool exposes per-symbol static metadata.
+  - capability: market calendar
+    operations:
+      - get_commonbaiscmarkets
+      - get_commonbasicmarketstrading_days
+    note: >-
+      GET /common/basic/markets (trading hours) and GET /common/basic/markets/trading_days (trading calendar)
+      have no MCP tool. An agent asking "is the HK market open right now?" cannot answer it over MCP.
+
+coverage:
+  mcp_tools_total: 17
+  mcp_tools_bound_to_openapi: 4
+  mcp_only: 13
+  openapi_operations_total: 13
+  openapi_operations_with_a_tool: 10
+  openapi_operations_without_a_tool: 3
+  divergence_summary: >-
+    The two surfaces overlap on only four capabilities. MCP is much broader on derived/analytical data
+    (market breadth, sector heatmaps, valuation, analyst ratings) which the published OpenAPI does not
+    describe at all; the OpenAPI is the only surface covering symbol metadata and the trading calendar.
+    Neither is a superset.

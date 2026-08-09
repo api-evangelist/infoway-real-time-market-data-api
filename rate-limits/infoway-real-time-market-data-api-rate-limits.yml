@@ -1,0 +1,55 @@
+generated: '2026-08-09'
+method: searched
+source:
+  - https://infoway.readme.io/reference/api-limitation.md
+  - https://docs.infoway.io/getting-started/api-limitation/http.md
+  - https://docs.infoway.io/getting-started/api-limitation/websocket.md
+scope: per-api-key
+signalling:
+  response_headers: none-documented
+  retry_after: false
+  rate_limit_headers: false
+  note: >-
+    Infoway documents no X-RateLimit-* or Retry-After headers. The only runtime signal a client gets is the
+    envelope `ret: 429` (HTTP) / code 429 or 501 (WebSocket). Budget tracking is the caller's problem.
+plan_tiers:
+  - plan: Free
+    plan_zh: 免费
+    http: {per_second: 2, per_minute: 120, per_day: 10000, applies_to: all endpoints}
+    websocket: {connections: 1, symbols_per_connection: 10, symbols_total: 10}
+  - plan: Basic
+    plan_zh: 基础
+    http: {per_second: 5, per_minute: 300, per_day: 30000, applies_to: all endpoints}
+    websocket: {connections: 2, symbols_per_connection: 100, symbols_total: 200}
+  - plan: Advanced
+    plan_zh: 高级
+    http: {per_second: 10, per_minute: 600, per_day: 50000, applies_to: all endpoints}
+    websocket: {connections: 4, symbols_per_connection: 200, symbols_total: 800}
+  - plan: Professional
+    plan_zh: 专业
+    http: {per_second: 20, per_minute: 1200, per_day: 100000, applies_to: all endpoints}
+    websocket: {connections: 10, symbols_per_connection: 500, symbols_total: 5000}
+global_limits:
+  - limit: websocket subscription frames
+    limit_count: 60
+    window: 1 minute
+    note: >-
+      All WebSocket subscription requests combined — K-line subscribe, quote subscribe, heartbeats — share
+      one 60/minute budget. Exceeding it disconnects the socket.
+  - limit: symbols per trade request
+    limit_count: 100
+    window: per request
+    note: Exceeding returns ret 505.
+ip_limits:
+  business_endpoints: none — limits are applied against the API key's plan, not the source IP
+  page_endpoints: >-
+    Infoway's own website widgets (live data display) are IP rate-limited; this does not apply to keyed API
+    traffic.
+x-evidence:
+  fetched: '2026-08-09'
+  urls:
+    - {url: 'https://infoway.readme.io/reference/api-limitation.md', http_status: 200}
+    - {url: 'https://docs.infoway.io/getting-started/api-limitation/websocket.md', http_status: 200}
+  note: >-
+    Tier NAMES and their numeric ceilings are published; tier PRICES are rendered client-side on
+    https://infoway.io/#pricing and were not machine-readable, so no plans/ artifact was written.

@@ -1,0 +1,89 @@
+# generated: '2026-08-09'
+# method: generated
+# source: openapi/infoway-real-time-market-data-api-openapi.yml + https://infoway.readme.io/llms.txt
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Infoway Real-time Market Data API
+  version: 1.0.0
+extends: openapi/infoway-real-time-market-data-api-openapi.yml
+x-provenance:
+  generated: '2026-08-09'
+  method: generated
+  source: >-
+    Summaries and tags below are taken from the titles the provider publishes for each endpoint page on
+    https://infoway.readme.io/reference/ (see llms.txt). They are applied as an overlay so the harvested
+    spec stays verbatim.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: infoway-real-time-market-data-api
+      x-apievangelist-harvested-from: https://infoway.readme.io/reference/
+      contact:
+        name: Infoway
+        url: https://infoway.io/en
+      x-documentation:
+        chinese: https://docs.infoway.io/
+        reference: https://infoway.readme.io/reference/quick-start
+  - target: $
+    update:
+      tags:
+        - name: basic-info
+          description: Symbol lists, symbol metadata, market info and trading calendars
+        - name: stock
+          description: Equity market data (US, HK, China A-shares)
+        - name: crypto
+          description: Cryptocurrency market data
+        - name: forex-futures
+          description: Forex, commodities and futures market data (the `common` prefix)
+  - target: $.paths['/common/basic/symbols'].get
+    update:
+      summary: 获取标的列表 / Get symbol list
+      tags: [basic-info]
+  - target: $.paths['/common/basic/symbols/info'].get
+    update:
+      summary: 获取标的的基础信息 / Get symbol basic info
+      tags: [basic-info]
+  - target: $.paths['/common/basic/markets'].get
+    update:
+      summary: 获取市场信息 / Get market info (trading hours)
+      tags: [basic-info]
+  - target: $.paths['/common/basic/markets/trading_days'].get
+    update:
+      summary: 获取市场交易日 / Get market trading days
+      tags: [basic-info]
+  - target: $.paths['/stock/batch_trade/{codes}'].get
+    update:
+      summary: 获取股票实时成交明细 / Get stock real-time trades
+      tags: [stock]
+  - target: $.paths['/stock/batch_depth/{codes}'].get
+    update:
+      summary: 获取股票实时盘口 / Get stock order book (depth)
+      tags: [stock]
+  - target: $.paths['/stock/batch_kline/{klineType}/{klineNum}/{codes}'].get
+    update:
+      summary: 获取股票实时K线数据 / Get stock candles (K-line)
+      tags: [stock]
+  - target: $.paths['/crypto/batch_trade/{codes}'].get
+    update:
+      summary: 获取加密货币实时成交明细 / Get crypto real-time trades
+      tags: [crypto]
+  - target: $.paths['/crypto/batch_depth/{codes}'].get
+    update:
+      summary: 获取加密货币实时盘口 / Get crypto order book (depth)
+      tags: [crypto]
+  - target: $.paths['/crypto/batch_kline/{klineType}/{klineNum}/{codes}'].get
+    update:
+      summary: 获取加密货币实时K线数据 / Get crypto candles (K-line)
+      tags: [crypto]
+  - target: $.paths['/common/batch_trade/{codes}'].get
+    update:
+      summary: 获取标的实时成交明细 / Get forex & futures real-time trades
+      tags: [forex-futures]
+  - target: $.paths['/common/batch_depth/{codes}'].get
+    update:
+      summary: 获取标的实时盘口 / Get forex & futures order book (depth)
+      tags: [forex-futures]
+  - target: $.paths['/common/batch_kline/{klineType}/{klineNum}/{codes}'].get
+    update:
+      summary: 获取标的K线实时数据 / Get forex & futures candles (K-line)
+      tags: [forex-futures]

@@ -1,0 +1,143 @@
+generated: '2026-08-09'
+method: derived
+source:
+  - openapi/infoway-real-time-market-data-api-openapi.yml
+  - asyncapi/infoway-real-time-market-data-api-streaming-asyncapi.yml
+  - https://infoway.readme.io/reference/get-symbol-basic-info.md
+  - https://infoway.readme.io/reference/get-symbol-market-info.md
+note: >-
+  The published OpenAPI declares NO components.schemas — every operation documents its shape only through a
+  response example. This model was therefore derived from those verbatim examples plus the provider's field
+  tables. Field names and types are as published; nothing was invented. There is no $ref graph to walk, so
+  relationships are inferred from shared join keys (`symbol` / `s`, and `market`).
+
+join_keys:
+  - key: symbol
+    aka: [s]
+    description: >-
+      The universal instrument identifier and the spine of the whole model. Suffixed by venue for equities
+      (.US, .HK, .SH, .SZ), bare for crypto pairs (BTCUSDT) and forex pairs (USDJPY).
+  - key: market
+    description: Two-letter market code (CN, HK, US, ...) used to join instruments to calendars and sessions.
+
+entities:
+  - name: Symbol
+    description: An instrument listing. Returned by the symbol list operation.
+    source_operation: 'openapi/infoway-real-time-market-data-api-openapi.yml#get_commonbasicsymbols'
+    identifier: symbol
+    fields:
+      - {name: symbol, type: string, example: '.DJI.US'}
+      - {name: name_cn, type: string}
+      - {name: name_hk, type: string}
+      - {name: name_en, type: string}
+  - name: SymbolInfo
+    description: Static/reference detail for one instrument, including share counts and per-share metrics.
+    source_operation: 'openapi/infoway-real-time-market-data-api-openapi.yml#get_symbolsinfo'
+    identifier: symbol
+    fields:
+      - {name: symbol, type: string, example: '000001.SZ'}
+      - {name: market, type: string, example: CN}
+      - {name: name_cn, type: string}
+      - {name: name_en, type: string}
+      - {name: name_hk, type: string}
+      - {name: exchange, type: string, example: SZSE}
+      - {name: currency, type: string, example: CNY}
+      - {name: lot_size, type: integer, example: 100}
+      - {name: total_shares, type: integer}
+      - {name: circulating_shares, type: integer}
+      - {name: hk_shares, type: integer}
+      - {name: eps, type: string}
+      - {name: eps_ttm, type: string}
+      - {name: bps, type: string}
+      - {name: dividend_yield, type: string}
+      - {name: stock_derivatives, type: string}
+      - {name: board, type: string, example: SZMainConnect}
+  - name: Market
+    description: A trading venue with its intraday session schedule.
+    source_operation: 'openapi/infoway-real-time-market-data-api-openapi.yml#get_commonbaiscmarkets'
+    identifier: market
+    fields:
+      - {name: market, type: string, example: US}
+      - {name: remark, type: string}
+      - {name: trade_schedules, type: array, items: TradeSchedule}
+  - name: TradeSchedule
+    description: One contiguous session window inside a market's trading day.
+    embedded_in: Market
+    fields:
+      - {name: begin_time, type: string, example: '09:30:00'}
+      - {name: end_time, type: string, example: '16:00:00'}
+      - {name: type, type: string, enum: [PreTrade, NormalTrade, PostTrade]}
+  - name: TradingCalendar
+    description: The set of full and half trading days for a market over a date range.
+    source_operation: 'openapi/infoway-real-time-market-data-api-openapi.yml#get_commonbasicmarketstrading_days'
+    identifier: market
+    fields:
+      - {name: trade_days, type: array, items: string, format: YYYYMMDD}
+      - {name: half_trade_days, type: array, items: string, format: YYYYMMDD}
+  - name: Trade
+    description: A last-trade tick for one instrument.
+    source_operation:
+      - 'openapi/infoway-real-time-market-data-api-openapi.yml#get_stockbatch_trade{codes}'
+      - 'openapi/infoway-real-time-market-data-api-openapi.yml#get_cryptobatch_trade{codes}'
+      - 'openapi/infoway-real-time-market-data-api-openapi.yml#get_commonbatch_trade{codes}'
+    also_streamed_as: 'asyncapi ... #/components/schemas/Trade (push code 10002)'
+    identifier: s
+    fields:
+      - {name: s, type: string, description: symbol}
+      - {name: t, type: integer, description: trade timestamp (ms)}
+      - {name: p, type: string, description: price}
+      - {name: v, type: string, description: volume}
+      - {name: vw, type: string, description: turnover}
+      - {name: td, type: integer, description: 'direction — 0 default, 1 buy, 2 sell'}
+  - name: Depth
+    description: >-
+      Order-book snapshot. Both sides are a two-element array of parallel arrays — [prices[], quantities[]] —
+      NOT an array of level objects. `a` and `b` can be null when no book is available (observed on TSLA.US).
+    source_operation:
+      - 'openapi/infoway-real-time-market-data-api-openapi.yml#get_stockbatch_depth{codes}'
+      - 'openapi/infoway-real-time-market-data-api-openapi.yml#get_cryptobatch_depth{codes}'
+      - 'openapi/infoway-real-time-market-data-api-openapi.yml#get_commonbatch_depth{codes}'
+    also_streamed_as: 'asyncapi ... #/components/schemas/Depth (push code 10005)'
+    identifier: s
+    fields:
+      - {name: s, type: string}
+      - {name: t, type: integer}
+      - {name: a, type: array, nullable: true, description: 'ask side: [prices[], quantities[]]'}
+      - {name: b, type: array, nullable: true, description: 'bid side: [prices[], quantities[]]'}
+  - name: Candle
+    description: OHLCV bar at one of twelve intervals.
+    source_operation:
+      - 'openapi/infoway-real-time-market-data-api-openapi.yml#get_stockbatch_kline{klineType}{klineNum}{codes}'
+      - 'openapi/infoway-real-time-market-data-api-openapi.yml#get_cryptobatch_kline{klineType}{klineNum}{codes}'
+      - 'openapi/infoway-real-time-market-data-api-openapi.yml#get_commonbatch_kline{klineType}{klineNum}{codes}'
+    also_streamed_as: 'asyncapi ... #/components/schemas/Candle (push code 10008)'
+    identifier: s
+    fields:
+      - {name: s, type: string}
+      - {name: t, type: integer}
+      - {name: ty, type: integer, description: klineType 1..12}
+      - {name: o, type: string}
+      - {name: h, type: string}
+      - {name: l, type: string}
+      - {name: c, type: string}
+      - {name: v, type: string}
+      - {name: vw, type: string}
+      - {name: pca, type: string, description: change amount}
+      - {name: pfr, type: string, description: change percent}
+
+relationships:
+  - {from: SymbolInfo, to: Symbol, kind: belongs_to, via: symbol}
+  - {from: SymbolInfo, to: Market, kind: belongs_to, via: market}
+  - {from: Market, to: TradeSchedule, kind: has_many, via: trade_schedules}
+  - {from: Market, to: TradingCalendar, kind: has_one, via: market}
+  - {from: Symbol, to: Trade, kind: has_many, via: 's = symbol'}
+  - {from: Symbol, to: Depth, kind: has_one, via: 's = symbol', note: latest snapshot}
+  - {from: Symbol, to: Candle, kind: has_many, via: 's = symbol', qualified_by: ty}
+
+not_modelled:
+  reason: >-
+    The market-overview, sector/plate and stock-fundamentals families (13 of the 17 MCP tools) have no
+    published OpenAPI operation and no published response example, so their entities cannot be derived
+    without guessing. They are listed in mcp/infoway-real-time-market-data-api-tool-crosswalk.yml under
+    mcp_only[] with the REST path the official SDK calls.
+  entities: [MarketTemperature, MarketBreadth, GlobalIndex, IndustryPlate, ConceptPlate, PlateMember, StockValuation, StockRatings, CompanyOverview, StockPanorama, StockDrivers]

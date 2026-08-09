@@ -1,0 +1,136 @@
+generated: '2026-08-09'
+method: searched
+source:
+  - https://infoway.readme.io/reference/api-protocols-and-response-formats.md
+  - https://infoway.readme.io/reference/api-endpoints.md
+  - https://infoway.readme.io/reference/kline-type.md
+  - https://infoway.readme.io/reference/api-limitation.md
+  - openapi/infoway-real-time-market-data-api-openapi.yml
+
+authentication:
+  style: api-key
+  rest: {location: header, name: apiKey, scheme_name: ApiKeyAuth}
+  websocket: {location: query, name: apikey, note: 'casing differs from the REST header — apikey vs apiKey'}
+  mcp: {location: env, name: INFOWAY_API_KEY}
+  oauth2: false
+  scopes: false
+  note: >-
+    One key per plan; an account may hold several plans and therefore several keys. There is no token
+    exchange, no refresh and no scope surface — see authentication/.
+
+routing:
+  style: market-prefix
+  description: >-
+    Infoway routes by instrument class in the FIRST path segment rather than by a parameter. The same three
+    capabilities repeat under each prefix.
+  prefixes:
+    - {prefix: /stock, covers: 'US, HK and China A-share equities'}
+    - {prefix: /crypto, covers: cryptocurrencies}
+    - {prefix: /common, covers: 'forex, commodities, futures — and all basic/reference data'}
+    - {prefix: /japan, covers: Japan equities, in_openapi: false}
+    - {prefix: /india, covers: India equities, in_openapi: false}
+    - {prefix: /korea, covers: Korea equities, in_openapi: false}
+  consequence: >-
+    Calling the wrong prefix for a symbol returns ret 508 (symbol not found), not a 404 — a common
+    integration trap.
+
+request:
+  methods: >-
+    The published OpenAPI is entirely GET. The prose docs additionally document a POST v2 batch K-line form
+    (/{prefix}/v2/batch_kline) which the official SDKs use; it has no OpenAPI operation.
+  batching:
+    parameter: codes
+    separator: ','
+    max_symbols: 100
+    over_limit_error: 505
+  content_type: application/json
+
+response_envelope:
+  shape: '{ret, msg, traceId, data}'
+  status_field: ret
+  success_value: 200
+  message_field: msg
+  data_field: data
+  note: >-
+    Application status lives in `ret`. Do not branch on the HTTP status alone. See
+    errors/infoway-real-time-market-data-api-error-codes.yml.
+
+request_tracing:
+  rest: {field: traceId, direction: server-generated, header: none}
+  websocket: {field: trace, direction: client-generated, note: 'echoed on every acknowledgement frame'}
+
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    Infoway documents no idempotency-key mechanism. Every published operation is a GET read and therefore
+    naturally retry-safe, but there is no idempotency contract to rely on and no write surface to apply one
+    to. No `Idempotency` pointer is emitted for this provider.
+
+pagination:
+  style: none-documented
+  note: >-
+    The market-data operations return the full batch for the symbols requested. The sector/plate and market
+    families exposed through the SDK and MCP take `limit` (and `offset` on plate members) but Infoway
+    publishes no cursor, no next-page token and no total-count field.
+  parameters: [limit, offset]
+  parameters_note: Observed in the official SDK signatures, not in the published OpenAPI.
+
+filtering_and_selection:
+  symbol_format:
+    - {market: US equities, pattern: '{code}.US', example: AAPL.US}
+    - {market: HK equities, pattern: '{code}.HK', example: 700.HK}
+    - {market: Shanghai, pattern: '{code}.SH', example: 600519.SH}
+    - {market: Shenzhen, pattern: '{code}.SZ', example: 000001.SZ}
+    - {market: crypto, pattern: '{pair}', example: BTCUSDT}
+    - {market: forex, pattern: '{pair}', example: USDJPY}
+  kline_type_enum:
+    1: 1 minute
+    2: 5 minutes
+    3: 15 minutes
+    4: 30 minutes
+    5: 1 hour
+    6: 2 hours
+    7: 4 hours
+    8: 1 day
+    9: 1 week
+    10: 1 month
+    11: 1 quarter
+    12: 1 year
+
+versioning:
+  scheme: uri-path (partial)
+  detail: >-
+    Basic/reference and v1 market-data paths are unversioned (/common/basic/symbols,
+    /stock/batch_trade/{codes}); the newer analytical families carry a v2 segment
+    (/common/v2/basic/market/..., /common/v2/basic/plate/..., /{prefix}/v2/batch_kline). There is no version
+    header, no date pinning and no published policy for how v1 and v2 coexist.
+  see_also: lifecycle/infoway-real-time-market-data-api-lifecycle.yml
+
+rate_limit_signalling:
+  headers: none
+  error_codes: [429, 501]
+  see_also: rate-limits/infoway-real-time-market-data-api-rate-limits.yml
+
+streaming:
+  transport: websocket
+  url: 'wss://data.infoway.io/ws?business={stock|crypto|common}&apikey='
+  protocol: >-
+    Integer `code` framing (10000/10002 trade, 10003/10005 depth, 10006/10008 candles, 10020/10022 news,
+    11000-11002 unsubscribe, 11010 unsubscribe ack) with a client-supplied `trace` id.
+  heartbeat: {code: 10010, interval: at least once per minute, timeout_error: 513}
+  see_also: asyncapi/infoway-real-time-market-data-api-streaming-asyncapi.yml
+
+cross_links:
+  errors: errors/infoway-real-time-market-data-api-error-codes.yml
+  lifecycle: lifecycle/infoway-real-time-market-data-api-lifecycle.yml
+  authentication: authentication/infoway-real-time-market-data-api-authentication.yml
+  rate_limits: rate-limits/infoway-real-time-market-data-api-rate-limits.yml
+  asyncapi: asyncapi/infoway-real-time-market-data-api-streaming-asyncapi.yml
+
+x-evidence:
+  fetched: '2026-08-09'
+  urls:
+    - {url: 'https://infoway.readme.io/reference/api-protocols-and-response-formats.md', http_status: 200}
+    - {url: 'https://infoway.readme.io/reference/api-endpoints.md', http_status: 200}
+    - {url: 'https://infoway.readme.io/reference/kline-type.md', http_status: 200}

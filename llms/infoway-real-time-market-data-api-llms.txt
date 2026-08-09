@@ -1,0 +1,62 @@
+# Infoway API Docs
+
+## 中文 文档
+
+- [欢迎](https://docs.infoway.io/readme.md)
+- [A股实时行情接口](https://docs.infoway.io/readme/china-a-shares-realtime-market-data-api.md): Infoway API的A股实时行情接口提供全面的A股市场数据，涵盖沪深两大交易所的5000只股票，帮助用户实时监控市场动态，做出及时决策。
+- [港股实时行情接口](https://docs.infoway.io/readme/hong-kong-realtime-market-data-api.md): Infoway API的港股实时行情接口提供全面的港股市场数据，涵盖超过4000只香港上市公司的实时股票行情，帮助用户实时监控市场动态，做出及时决策。
+- [美股实时行情接口](https://docs.infoway.io/readme/usa-realtime-market-data-api.md): Infoway API美股实时行情接口提供全面的美股市场数据，涵盖超过1万只美股的实时行情（包含各类指数），帮助用户实时监控市场动态，做出及时决策。
+- [外汇实时行情接口](https://docs.infoway.io/readme/forex-realtime-market-data-api.md): Infoway外汇实时行情接口提供超过40种主流货币对的行情数据，可查询实时和历史K线、买卖盘口等数据。
+- [加密货币实时行情接口](https://docs.infoway.io/readme/crypto-realtime-market-data-api.md): Infoway加密货币实时行情接口提供超过100种主流虚拟币的行情数据，可查询实时和历史K线、买卖盘口等数据。
+- [期货实时行情接口](https://docs.infoway.io/readme/future-realtime-market-data-api.md): Infoway期货实时行情接口提供超过30种商品/贵金属期货的行情数据，可查询实时和历史K线、买卖盘口等数据。
+- [其他股票市场](https://docs.infoway.io/readme/other-stock-markets.md)
+- [日本股票实时行情接口](https://docs.infoway.io/readme/other-stock-markets/japan-realtime-stock-market-data-api.md): Infoway API 日本股票实时行情API提供全面的日本股市市场数据，数据来自东京交易所，涵盖3800只日本股票，帮助用户实时监控市场动态，做出及时决策。
+- [印度股票实时行情接口](https://docs.infoway.io/readme/other-stock-markets/india-realtime-stock-market-data-api.md): Infoway API 印度股票实时行情API提供全面的印度股市市场数据，数据来自印度最大的两家股票交易所：BSE与NSE，涵盖约5800只印度上市股票。
+- [韩国股票实时行情接口](https://docs.infoway.io/readme/other-stock-markets/korean-realtime-stock-market-data-api.md): Infoway API 韩国股票实时行情API提供全面的韩国股市市场数据，数据来自韩国KRX股票交易所，涵盖约2600只韩国上市股票。
+- [快速开始](https://docs.infoway.io/getting-started/quick-start.md)
+- [API Key申请](https://docs.infoway.io/getting-started/api-key-application.md): 包含如何申请Apikey，以及续费和升级逻辑
+- [接口限制说明](https://docs.infoway.io/getting-started/api-limitation.md)
+- [HTTP接口限制](https://docs.infoway.io/getting-started/api-limitation/http.md)
+- [WebSocket限制](https://docs.infoway.io/getting-started/api-limitation/websocket.md)
+- [错误码说明](https://docs.infoway.io/getting-started/error-codes.md): HTTP错误码以及WEBSOCKET错误码说明
+- [HTTP错误码](https://docs.infoway.io/getting-started/error-codes/http.md): HTTP API接口错误码说明
+- [WebSocket错误码](https://docs.infoway.io/getting-started/error-codes/websocket.md): Websocket错误码说明
+- [行情地址说明](https://docs.infoway.io/getting-started/api-endpoints.md): 包含HTTP以及WebSocket的URL地址说明
+- [请求协议以及响应格式](https://docs.infoway.io/getting-started/api-protocols-and-response-formats.md): 包括HTTP请求以及WEBSOCKET请求
+- [HTTP请求示例](https://docs.infoway.io/rest-api/http-code-example.md)
+- [基础信息查询](https://docs.infoway.io/rest-api/basic-info.md): 包含查询产品列表、产品的基本信息、市场信息（交易日、交易时间）
+- [GET查询产品列表](https://docs.infoway.io/rest-api/basic-info/get-symbol-list.md): 查询不同市场的产品列表，支持条件查询
+- [GET获取产品的基础信息](https://docs.infoway.io/rest-api/basic-info/get-symbol-basic-info.md)
+- [GET获取产品的复权因子](https://docs.infoway.io/rest-api/basic-info/get-adjustment-factor.md): 获取产品的复权因子
+- [GET获取市场的交易日信息](https://docs.infoway.io/rest-api/basic-info/get-market-trading-days.md): 获取不同市场的交易日信息，包含全天交易日以及半天交易日
+- [GET获取市场的交易时间](https://docs.infoway.io/rest-api/basic-info/get-market-trading-hours.md): 获取不同市场的基本交易时间
+- [GET获取个股的详细信息](https://docs.infoway.io/rest-api/basic-info/get-symbol-basic-info-1.md)
+- [GET获取个股的财务数据](https://docs.infoway.io/rest-api/basic-info/get-stock-financial-data.md)
+- [GET个股基本面数据](https://docs.infoway.io/rest-api/basic-info/get-stock-fundamental.md): 估值时序、机构评级、公司概览、全景数据、概念标签、公司大事、关键驱动分析
+- [GET市场概况数据](https://docs.infoway.io/rest-api/basic-info/get-market-overview.md): 市场温度、涨跌家数、全球指数、领涨行业、排行榜配置
+- [GET板块数据](https://docs.infoway.io/rest-api/basic-info/get-plate-data.md): 行业板块列表、概念板块列表、板块成分股、行业介绍
+- [行情数据查询](https://docs.infoway.io/rest-api/http-endpoints.md)
+- [GET获取产品的实时成交明细(Trade)](https://docs.infoway.io/rest-api/http-endpoints/get-trade.md): 获取股票、加密货币、外汇、能源、商品等所有产品的实时成交明细
+- [GET获取产品的实时买卖盘口(Depth)](https://docs.infoway.io/rest-api/http-endpoints/get-depth.md): 获取股票、加密货币、外汇、能源、商品等所有产品的实时买卖盘口
+- [POST 获取产品的历史/实时K线(Candles)](https://docs.infoway.io/rest-api/http-endpoints/get-candles.md): 获取股票、加密货币、外汇、能源、商品等所有产品的实时买卖盘口
+- [Websocket订阅地址说明](https://docs.infoway.io/websocket-api/endpoints.md)
+- [Websocket代码示例](https://docs.infoway.io/websocket-api/code-examples.md): WebSocket代码示例，获取实时成交明细、盘口、k线。包括自动重连，心跳检测机制。
+- [Websocket 订阅方法](https://docs.infoway.io/websocket-api/subscribe-and-unsubscribe.md): 包括所有Websocket的订阅以及取消订阅的入参、出餐
+- [实时成交明细（Trade）订阅](https://docs.infoway.io/websocket-api/subscribe-and-unsubscribe/trade-subscribe.md)
+- [实时新闻（News）订阅](https://docs.infoway.io/websocket-api/subscribe-and-unsubscribe/real-time-news.md)
+- [实时K线（Candles）订阅](https://docs.infoway.io/websocket-api/subscribe-and-unsubscribe/candles-subscribe.md)
+- [实时买卖盘口（Depth）订阅](https://docs.infoway.io/websocket-api/subscribe-and-unsubscribe/depth-subscribe.md)
+- [Websocket取消订阅](https://docs.infoway.io/websocket-api/unsubscribe.md): 该文档描述了如果通过Websocket参数取消实时成交明细、盘口、K线的订阅请求
+- [实时成交明细（Trade）取消订阅](https://docs.infoway.io/websocket-api/unsubscribe/trade-subscribe.md)
+- [实时新闻（News）取消订阅](https://docs.infoway.io/websocket-api/unsubscribe/trade-subscribe-1.md)
+- [实时买卖盘口（Depth）取消订阅](https://docs.infoway.io/websocket-api/unsubscribe/trade-subscribe-2.md): Depth
+- [实时K线（Candles）取消订阅](https://docs.infoway.io/websocket-api/unsubscribe/trade-subscribe-3.md): 展示如何在不断开Websocket连接的情况下，全量取消或者只取消一部分产品订阅
+- [心跳机制](https://docs.infoway.io/websocket-api/heartbeat.md)
+- [SDK & 开发者工具](https://docs.infoway.io/sdk-and-tools/readme.md): Infoway 提供多语言官方 SDK、AI 集成工具及量化示例，帮助开发者快速接入实时金融数据。
+- [Python SDK](https://docs.infoway.io/sdk-and-tools/python-sdk.md)
+- [Node.js SDK](https://docs.infoway.io/sdk-and-tools/nodejs-sdk.md)
+- [Java SDK](https://docs.infoway.io/sdk-and-tools/java-sdk.md)
+- [MCP Server](https://docs.infoway.io/sdk-and-tools/mcp-server.md)
+- [AI 投资顾问](https://docs.infoway.io/sdk-and-tools/ai-advisor.md)
+- [量化入门示例](https://docs.infoway.io/sdk-and-tools/quant-starter.md)
+- [交易所工具箱](https://docs.infoway.io/sdk-and-tools/exchange-toolkit.md)

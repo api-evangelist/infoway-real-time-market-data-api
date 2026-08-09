@@ -1,0 +1,50 @@
+generated: '2026-08-09'
+method: searched
+source: >-
+  https://github.com/infoway-api/infoway-mcp-server/blob/HEAD/SKILL.md (provider-published, saved verbatim)
+  plus one skill generated from openapi/infoway-real-time-market-data-api-openapi.yml
+skills:
+  - file: infoway-real-time-market-data-api-financial-data-skill.md
+    name: infoway-financial-data
+    description: >-
+      Provider-published Agent Skill for the Infoway Financial Data MCP server — install, required env,
+      client configuration, and all 17 tools grouped by family. Saved VERBATIM from the provider's repo.
+    method: searched
+    source: https://raw.githubusercontent.com/infoway-api/infoway-mcp-server/HEAD/SKILL.md
+    api: mcp/infoway-real-time-market-data-api-mcp.yml
+    operations:
+      - get_realtime_trade
+      - get_market_depth
+      - get_kline
+      - get_market_temperature
+      - get_market_breadth
+      - get_global_indexes
+      - get_leading_industries
+      - get_industry_list
+      - get_concept_list
+      - get_plate_members
+      - get_plate_heatmap
+      - get_company_overview
+      - get_stock_valuation
+      - get_stock_ratings
+      - get_stock_panorama
+      - get_stock_drivers
+      - search_symbols
+  - file: infoway-real-time-market-data-api-quote-and-kline.md
+    name: infoway-quote-and-kline
+    description: >-
+      Quote, order book and candlestick retrieval over the REST API, including the market-prefix routing
+      rule, the {ret,msg,traceId,data} envelope, the 100-symbol batch ceiling and per-plan rate limits.
+    method: generated
+    api: openapi/infoway-real-time-market-data-api-openapi.yml
+    operations:
+      - get_commonbasicsymbols
+      - get_stockbatch_trade{codes}
+      - get_stockbatch_depth{codes}
+      - get_stockbatch_kline{klineType}{klineNum}{codes}
+      - get_cryptobatch_trade{codes}
+      - get_cryptobatch_depth{codes}
+      - get_cryptobatch_kline{klineType}{klineNum}{codes}
+      - get_commonbatch_trade{codes}
+      - get_commonbatch_depth{codes}
+      - get_commonbatch_kline{klineType}{klineNum}{codes}

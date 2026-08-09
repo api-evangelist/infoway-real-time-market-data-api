@@ -1,0 +1,113 @@
+generated: '2026-08-09'
+method: searched
+source:
+  - https://infoway.readme.io/reference/http-error-code.md
+  - https://infoway.readme.io/reference/websocket-error-code.md
+  - https://docs.infoway.io/getting-started/error-codes/http.md
+  - https://docs.infoway.io/getting-started/error-codes/websocket.md
+  - https://infoway.readme.io/reference/api-protocols-and-response-formats.md
+format: custom-envelope
+rfc9457: false
+note: >-
+  Infoway does not use RFC 9457 problem+json. Every REST response — success or failure — is a JSON envelope
+  and the application status is carried in the `ret` field, NOT (only) in the HTTP status line. Clients must
+  branch on `ret`, not on the transport status. The published OpenAPI documents only 200 responses, so this
+  registry is the sole machine-readable record of the failure surface.
+
+envelope:
+  shape: '{ret, msg, traceId, data}'
+  status_field: ret
+  success_value: 200
+  message_field: msg
+  correlation_field: traceId
+  correlation_note: System-generated unique id per request; quote it in support tickets.
+  source: https://infoway.readme.io/reference/api-protocols-and-response-formats.md
+
+http_errors:
+  - code: 401
+    title: Authentication error
+    detail: >-
+      API Key is incorrect, or was not placed in the required `apiKey` header (or query parameter).
+    remediation: Check the key in the dashboard and send it as the `apiKey` request header.
+    class: auth
+  - code: 404
+    title: API endpoint does not exist
+    detail: The requested interface does not exist.
+    remediation: Verify the path and the market prefix (/stock, /crypto, /common, /japan, /india, /korea).
+    class: client
+  - code: 429
+    title: Rate limited
+    detail: Request frequency exceeds the quota of your current plan.
+    remediation: >-
+      Back off and batch. No Retry-After or X-RateLimit-* header is documented — track your own budget
+      against the per-plan ceilings in rate-limits/.
+    class: quota
+  - code: 499
+    title: Client closed the request
+    detail: >-
+      The client aborted; typically seen from networks with unstable connectivity.
+    remediation: Retry from a stable network.
+    class: transport
+  - code: 503
+    title: K-line query count exceeds the limit
+    detail: The number of candles requested is above what the plan permits.
+    remediation: Lower `klineNum`.
+    class: quota
+  - code: 505
+    title: Symbol count exceeds the limit
+    detail: Too many instruments in one request. Trade endpoints accept a maximum of 100 symbols.
+    remediation: Split the `codes` list into batches of 100 or fewer.
+    class: client
+  - code: 508
+    title: Symbol does not exist or has been delisted
+    detail: All queried instruments are unknown or delisted (often caused by using the wrong market prefix).
+    remediation: Resolve the code with GET /common/basic/symbols first.
+    class: client
+  - code: 524
+    title: Origin connection timeout
+    detail: >-
+      Timeout between Infoway's acceleration proxy provider and its origin servers. Provider states this
+      usually recovers quickly.
+    remediation: Retry with backoff.
+    class: server
+
+websocket_errors:
+  - code: 401
+    title: Authentication error
+    detail: API Key incorrect or not supplied in the required header/query parameter.
+  - code: 404
+    title: Endpoint does not exist
+  - code: 427
+    title: WebSocket connection count exceeds the plan quota
+    detail: Concurrent connections above the plan ceiling (Free 1, Basic 2, Advanced 4, Professional 10).
+  - code: 429
+    title: Rate limited
+    detail: Request frequency exceeds the plan quota.
+  - code: 499
+    title: Client closed the connection
+  - code: 500
+    title: Service exception
+  - code: 501
+    title: Request frequency exceeds the per-minute limit
+    detail: All subscription frames combined (including heartbeats) are capped at 60 per minute.
+  - code: 505
+    title: Symbol count exceeds the limit
+  - code: 506
+    title: Missing parameter
+  - code: 513
+    title: WebSocket heartbeat timeout
+    detail: No heartbeat (code 10010) for more than one minute; the server closes the connection.
+  - code: 515
+    title: Parameter is not valid JSON
+  - code: 524
+    title: Origin connection timeout
+
+x-evidence:
+  fetched: '2026-08-09'
+  urls:
+    - {url: 'https://infoway.readme.io/reference/http-error-code.md', http_status: 200}
+    - {url: 'https://docs.infoway.io/getting-started/error-codes/http.md', http_status: 200}
+    - {url: 'https://docs.infoway.io/getting-started/error-codes/websocket.md', http_status: 200}
+  translation_note: >-
+    Titles and detail text are English renderings of the Chinese-language error tables Infoway publishes;
+    the numeric codes are verbatim.

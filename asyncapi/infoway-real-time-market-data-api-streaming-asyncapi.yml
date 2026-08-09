@@ -1,0 +1,403 @@
+asyncapi: 3.0.0
+info:
+  title: Infoway WebSocket Streaming API
+  version: '1.0.0'
+  description: >-
+    Real-time push of trades, order-book depth, candlesticks (K-line) and news over a single WebSocket
+    connection.
+
+
+    PROVENANCE: Infoway publishes NO AsyncAPI document. This document was DERIVED by API Evangelist from the
+    provider's own WebSocket protocol reference — every protocol code, field name, type and example value
+    below is taken verbatim from the pages listed in `x-provenance.sources`. Nothing was invented. Where the
+    provider does not document something (for example an error channel schema), it is omitted rather than
+    guessed.
+  contact:
+    name: Infoway
+    url: https://infoway.io/en
+  externalDocs:
+    description: WebSocket subscription reference
+    url: https://docs.infoway.io/websocket-api/endpoints.md
+
+x-provenance:
+  generated: '2026-08-09'
+  method: derived
+  provider_publishes_asyncapi: false
+  sources:
+    - https://infoway.readme.io/reference/ws-subscription.md
+    - https://infoway.readme.io/reference/subscribe-trade.md
+    - https://infoway.readme.io/reference/unsubscribe-trade.md
+    - https://infoway.readme.io/reference/subscribe-depth.md
+    - https://infoway.readme.io/reference/unsubscribe-depth.md
+    - https://infoway.readme.io/reference/subscribe-candles.md
+    - https://infoway.readme.io/reference/unsubscribe-candles.md
+    - https://infoway.readme.io/reference/heartbeat.md
+    - https://docs.infoway.io/websocket-api/subscribe-and-unsubscribe/real-time-news.md
+  fetched: '2026-08-09'
+  http_status: 200
+
+servers:
+  stock:
+    host: data.infoway.io
+    pathname: /ws
+    protocol: wss
+    title: Equities stream
+    description: 'wss://data.infoway.io/ws?business=stock&apikey=YourAPIKey — US, HK and China A-share equities.'
+    security:
+      - $ref: '#/components/securitySchemes/apiKeyQuery'
+  crypto:
+    host: data.infoway.io
+    pathname: /ws
+    protocol: wss
+    title: Crypto stream
+    description: 'wss://data.infoway.io/ws?business=crypto&apikey=YourAPIKey — digital currencies.'
+    security:
+      - $ref: '#/components/securitySchemes/apiKeyQuery'
+  common:
+    host: data.infoway.io
+    pathname: /ws
+    protocol: wss
+    title: Forex, commodities and futures stream
+    description: 'wss://data.infoway.io/ws?business=common&apikey=YourAPIKey — forex, commodities, futures.'
+    security:
+      - $ref: '#/components/securitySchemes/apiKeyQuery'
+
+channels:
+  session:
+    address: /ws
+    title: Market data session
+    description: >-
+      One duplex WebSocket session. Every client frame carries an integer protocol `code` and a client
+      generated `trace` id; every server frame echoes the `trace` on acknowledgements. A heartbeat (code
+      10010) must be sent at least once per minute or the server treats the connection as inactive and
+      closes it.
+    servers:
+      - $ref: '#/servers/stock'
+      - $ref: '#/servers/crypto'
+      - $ref: '#/servers/common'
+    messages:
+      subscribeTrade:
+        $ref: '#/components/messages/subscribeTrade'
+      subscribeTradeAck:
+        $ref: '#/components/messages/subscribeTradeAck'
+      tradePush:
+        $ref: '#/components/messages/tradePush'
+      unsubscribeTrade:
+        $ref: '#/components/messages/unsubscribeTrade'
+      subscribeDepth:
+        $ref: '#/components/messages/subscribeDepth'
+      subscribeDepthAck:
+        $ref: '#/components/messages/subscribeDepthAck'
+      depthPush:
+        $ref: '#/components/messages/depthPush'
+      unsubscribeDepth:
+        $ref: '#/components/messages/unsubscribeDepth'
+      subscribeCandles:
+        $ref: '#/components/messages/subscribeCandles'
+      subscribeCandlesAck:
+        $ref: '#/components/messages/subscribeCandlesAck'
+      candlePush:
+        $ref: '#/components/messages/candlePush'
+      unsubscribeCandles:
+        $ref: '#/components/messages/unsubscribeCandles'
+      unsubscribeAck:
+        $ref: '#/components/messages/unsubscribeAck'
+      heartbeat:
+        $ref: '#/components/messages/heartbeat'
+
+operations:
+  sendSubscribeTrade:
+    action: send
+    channel:
+      $ref: '#/channels/session'
+    title: Subscribe to real-time trades (code 10000)
+    messages:
+      - $ref: '#/channels/session/messages/subscribeTrade'
+  receiveTrade:
+    action: receive
+    channel:
+      $ref: '#/channels/session'
+    title: Receive real-time trade push (code 10002)
+    messages:
+      - $ref: '#/channels/session/messages/tradePush'
+  sendSubscribeDepth:
+    action: send
+    channel:
+      $ref: '#/channels/session'
+    title: Subscribe to order-book depth (code 10003)
+    messages:
+      - $ref: '#/channels/session/messages/subscribeDepth'
+  receiveDepth:
+    action: receive
+    channel:
+      $ref: '#/channels/session'
+    title: Receive order-book depth push (code 10005)
+    messages:
+      - $ref: '#/channels/session/messages/depthPush'
+  sendSubscribeCandles:
+    action: send
+    channel:
+      $ref: '#/channels/session'
+    title: Subscribe to K-line candles (code 10006)
+    messages:
+      - $ref: '#/channels/session/messages/subscribeCandles'
+  receiveCandles:
+    action: receive
+    channel:
+      $ref: '#/channels/session'
+    title: Receive K-line candle push (code 10008)
+    messages:
+      - $ref: '#/channels/session/messages/candlePush'
+  sendHeartbeat:
+    action: send
+    channel:
+      $ref: '#/channels/session'
+    title: Heartbeat (code 10010) — required at least once per minute
+    messages:
+      - $ref: '#/channels/session/messages/heartbeat'
+  sendUnsubscribeTrade:
+    action: send
+    channel:
+      $ref: '#/channels/session'
+    title: Cancel all trade subscriptions (code 11000)
+    messages:
+      - $ref: '#/channels/session/messages/unsubscribeTrade'
+  sendUnsubscribeDepth:
+    action: send
+    channel:
+      $ref: '#/channels/session'
+    title: Cancel all depth subscriptions (code 11001)
+    messages:
+      - $ref: '#/channels/session/messages/unsubscribeDepth'
+  sendUnsubscribeCandles:
+    action: send
+    channel:
+      $ref: '#/channels/session'
+    title: Cancel K-line subscriptions (code 11002)
+    messages:
+      - $ref: '#/channels/session/messages/unsubscribeCandles'
+
+components:
+  securitySchemes:
+    apiKeyQuery:
+      type: httpApiKey
+      name: apikey
+      in: query
+      description: >-
+        The API key is supplied on the connection URL as the `apikey` query parameter. Note the casing
+        differs from the REST surface, which uses an `apiKey` request header.
+
+  schemas:
+    Trade:
+      type: object
+      properties:
+        s: {type: string, description: Symbol, examples: ['BTCUSDT']}
+        p: {type: string, description: Last price, examples: ['103482.94']}
+        t: {type: integer, format: int64, description: Trade timestamp (ms), examples: [1747552358393]}
+        td: {type: integer, description: 'Trade direction: 0 default, 1 buy, 2 sell', examples: [2]}
+        v: {type: string, description: Volume, examples: ['0.00096']}
+        vw: {type: string, description: Turnover, examples: ['99.3436224']}
+    Depth:
+      type: object
+      properties:
+        s: {type: string, description: Symbol, examples: ['BTCUSDT']}
+        t: {type: integer, format: int64, description: Timestamp (ms), examples: [1747553102161]}
+        a:
+          type: array
+          description: 'Ask side: a two-element array — [prices[], quantities[]].'
+          items: {type: array, items: {type: string}}
+        b:
+          type: array
+          description: 'Bid side: a two-element array — [prices[], quantities[]].'
+          items: {type: array, items: {type: string}}
+    Candle:
+      type: object
+      properties:
+        s: {type: string, description: Symbol, examples: ['BTCUSDT']}
+        o: {type: string, description: Open}
+        h: {type: string, description: High}
+        l: {type: string, description: Low}
+        c: {type: string, description: Close}
+        v: {type: string, description: Volume}
+        vw: {type: string, description: Turnover}
+        pca: {type: string, description: Change amount, examples: ['0.00']}
+        pfr: {type: string, description: Change percent, examples: ['0.00%']}
+        t: {type: integer, format: int64, description: Candle timestamp}
+        ty: {type: integer, description: 'K-line type (see klineType enum 1..12)'}
+    Ack:
+      type: object
+      required: [code, trace, msg]
+      properties:
+        code: {type: integer, description: Response protocol code}
+        trace: {type: string, description: Echo of the client trace id}
+        msg: {type: string, examples: ['ok']}
+
+  messages:
+    subscribeTrade:
+      name: subscribeTrade
+      title: Subscribe trades
+      payload:
+        type: object
+        required: [code, trace, data]
+        properties:
+          code: {type: integer, const: 10000}
+          trace: {type: string, description: Client-generated traceable id}
+          data:
+            type: object
+            required: [codes]
+            properties:
+              codes: {type: string, description: Comma-separated symbols, examples: ['BTCUSDT']}
+      examples:
+        - name: subscribe
+          payload:
+            code: 10000
+            trace: 423afec425004bd8a5e02e1ba5f9b2b0
+            data: {codes: BTCUSDT}
+    subscribeTradeAck:
+      name: subscribeTradeAck
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Ack'
+          - properties: {code: {const: 10001}}
+    tradePush:
+      name: tradePush
+      title: Trade push
+      payload:
+        type: object
+        properties:
+          code: {type: integer, const: 10002}
+          data: {$ref: '#/components/schemas/Trade'}
+    unsubscribeTrade:
+      name: unsubscribeTrade
+      payload:
+        type: object
+        required: [code, trace]
+        properties:
+          code: {type: integer, const: 11000}
+          trace: {type: string}
+    subscribeDepth:
+      name: subscribeDepth
+      payload:
+        type: object
+        required: [code, trace, data]
+        properties:
+          code: {type: integer, const: 10003}
+          trace: {type: string}
+          data:
+            type: object
+            required: [codes]
+            properties:
+              codes: {type: string}
+    subscribeDepthAck:
+      name: subscribeDepthAck
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Ack'
+          - properties: {code: {const: 10004}}
+    depthPush:
+      name: depthPush
+      title: Order-book depth push
+      payload:
+        type: object
+        properties:
+          code: {type: integer, const: 10005}
+          data: {$ref: '#/components/schemas/Depth'}
+    unsubscribeDepth:
+      name: unsubscribeDepth
+      payload:
+        type: object
+        required: [code, trace]
+        properties:
+          code: {type: integer, const: 11001}
+          trace: {type: string}
+    subscribeCandles:
+      name: subscribeCandles
+      title: Subscribe K-line
+      payload:
+        type: object
+        required: [code, trace, data]
+        properties:
+          code: {type: integer, const: 10006}
+          trace: {type: string}
+          data:
+            type: object
+            required: [arr]
+            properties:
+              arr:
+                type: array
+                items:
+                  type: object
+                  required: [type, codes]
+                  properties:
+                    type:
+                      type: integer
+                      description: >-
+                        K-line type: 1=1m, 2=5m, 3=15m, 4=30m, 5=1h, 6=2h, 7=4h, 8=1d, 9=1w, 10=1mo,
+                        11=1q, 12=1y
+                    codes: {type: string, description: Comma-separated symbols}
+      examples:
+        - name: subscribe-1m-btc
+          payload:
+            code: 10006
+            trace: 423afec425004bd8a5e02e1ba5f9b2b0
+            data:
+              arr:
+                - {type: 1, codes: BTCUSDT}
+    subscribeCandlesAck:
+      name: subscribeCandlesAck
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Ack'
+          - properties: {code: {const: 10007}}
+    candlePush:
+      name: candlePush
+      title: K-line push
+      payload:
+        type: object
+        properties:
+          code: {type: integer, const: 10008}
+          data: {$ref: '#/components/schemas/Candle'}
+    unsubscribeCandles:
+      name: unsubscribeCandles
+      payload:
+        type: object
+        required: [code, trace]
+        properties:
+          code: {type: integer, const: 11002}
+          trace: {type: string}
+    unsubscribeAck:
+      name: unsubscribeAck
+      title: Unsubscribe acknowledgement (all types)
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Ack'
+          - properties: {code: {const: 11010}}
+    heartbeat:
+      name: heartbeat
+      title: Heartbeat
+      payload:
+        type: object
+        required: [code, trace]
+        properties:
+          code: {type: integer, const: 10010}
+          trace: {type: string}
+      examples:
+        - name: heartbeat
+          payload:
+            code: 10010
+            trace: 423afec425004bd8a5e02e1ba5f9b2b0
+
+x-additional-surfaces:
+  news:
+    description: >-
+      A separate news stream exists on the same socket: subscribe with code 10020 (ack 10021, push 10022),
+      keyed by a single `lang` value (en, zh-Hans, zh-Hant, ja, ko, de, fr, es, pt). It requires a plan with
+      the news entitlement (`newsFlag=1`) and permits only ONE connection per API key. Not modelled above
+      because the provider documents the push payload only in the Chinese docs tree.
+    source: https://docs.infoway.io/websocket-api/subscribe-and-unsubscribe/real-time-news.md
+
+x-limits:
+  note: >-
+    Connection and subscription ceilings are per plan — see
+    rate-limits/infoway-real-time-market-data-api-rate-limits.yml. All subscription frames combined
+    (including heartbeats) are capped at 60 per minute; exceeding it drops the connection.

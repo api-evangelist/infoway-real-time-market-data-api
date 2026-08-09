@@ -1,0 +1,75 @@
+generated: '2026-08-09'
+method: searched
+source: openapi/infoway-real-time-market-data-api-openapi.yml
+docs: https://infoway.readme.io/reference/api-key-application
+docs_additional:
+  - https://infoway.readme.io/reference/api-protocols-and-response-formats.md
+  - https://infoway.readme.io/reference/ws-subscription.md
+  - https://docs.infoway.io/sdk-and-tools/mcp-server.md
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+  oauth2_flows: []
+  scopes: false
+  note: >-
+    Single-factor API-key authentication across every surface. No OAuth, no OpenID Connect, no bearer
+    tokens, no mTLS, no scopes and no token exchange. The key is the whole authorization model — plan
+    entitlements are attached to the key server-side.
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: apiKey
+  surface: rest
+  sources:
+  - openapi/infoway-real-time-market-data-api-openapi.yml
+  applied_to: all 13 published operations
+- name: WebSocketApiKey
+  type: apiKey
+  in: query
+  parameter: apikey
+  surface: websocket
+  sources:
+  - https://infoway.readme.io/reference/ws-subscription.md
+  note: >-
+    Supplied on the connection URL: wss://data.infoway.io/ws?business={stock|crypto|common}&apikey=KEY.
+    Case differs from the REST header (apikey vs apiKey) — a real integration trap. Carrying the key in a
+    query string also means it can land in proxy and server logs.
+  derived: true
+- name: MCPServerKey
+  type: apiKey
+  in: env
+  parameter: INFOWAY_API_KEY
+  surface: mcp
+  sources:
+  - https://docs.infoway.io/sdk-and-tools/mcp-server.md
+  - https://raw.githubusercontent.com/infoway-api/infoway-mcp-server/HEAD/SKILL.md
+  note: The stdio MCP server reads the same key from the environment and forwards it via the SDK.
+  derived: true
+key_management:
+  issuance: >-
+    Register at https://infoway.io/en/create-account, then the key is issued from the dashboard at
+    https://infoway.io/dashboard.
+  one_key_per_plan: true
+  multiple_plans_per_account: true
+  rotation: not documented
+  expiry: tied to the plan's validity period; renewal and upgrade are done from the dashboard
+  revocation: not documented
+  free_tier: >-
+    A free plan exists (2 req/s, 10,000 requests/day). The provider-published SKILL.md additionally
+    advertises a "7-day free trial with full access".
+gaps:
+  - No documented key-rotation or revocation procedure.
+  - No scope or permission model — a key is all-or-nothing within its plan entitlements.
+  - >-
+    The WebSocket surface accepts the key as a URL query parameter, which is weaker than a header and is not
+    flagged as a risk in the provider's documentation.
+x-evidence:
+  fetched: '2026-08-09'
+  urls:
+    - {url: 'https://infoway.readme.io/reference/api-key-application.md', http_status: 200}
+    - {url: 'https://infoway.readme.io/reference/ws-subscription.md', http_status: 200}
+    - {url: 'https://docs.infoway.io/sdk-and-tools/mcp-server.md', http_status: 200}
