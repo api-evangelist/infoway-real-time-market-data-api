@@ -27,85 +27,102 @@ tags:
   - fintech
   - historical-data
 apis:
-  - name: Infoway REST/HTTP Market Data API
-    description: >-
-      GET endpoints for symbol lists, symbol reference data, market trading hours and trading calendars,
-      last-trade ticks, order-book depth and batch K-line (candlestick) queries across equities, crypto,
-      forex and futures. Routing is by market prefix (/stock, /crypto, /common). API-key header auth
-      (apiKey); every response is the envelope {ret, msg, traceId, data} where ret carries the application
-      status.
-    humanURL: https://infoway.readme.io/reference/quick-start
-    baseURL: https://data.infoway.io
-    tags:
-      - stock-api
-      - forex-api
-      - crypto-api
-      - commodities-api
-      - futures-api
-      - market-data
-      - real-time-data
-      - financial-data
-      - fintech
-      - historical-data
-    properties:
-      - type: OpenAPI
-        url: openapi/infoway-real-time-market-data-api-openapi.yml
-      - type: Overlay
-        url: overlays/infoway-real-time-market-data-api-openapi-overlay.yaml
-      - type: Documentation
-        url: https://docs.infoway.io/rest-api/http-endpoints
-      - type: APIReference
-        url: https://infoway.readme.io/reference/quick-start
-      - type: LLMsTxt
-        url: https://docs.infoway.io/llms.txt
-  - name: Infoway WebSocket Streaming API
-    description: >-
-      Persistent WebSocket connection for real-time trades, order-book depth, candlesticks and multilingual
-      news. Integer protocol-code framing (10000 subscribe trade, 10002 trade push, 10003/10005 depth,
-      10006/10008 candles, 10020/10022 news, 11000-11002 unsubscribe) with a client-supplied trace id and a
-      mandatory heartbeat (code 10010) at least once per minute. API key is supplied as the apikey query
-      parameter on the connection URL.
-    humanURL: https://docs.infoway.io/websocket-api/endpoints.md
-    baseURL: wss://data.infoway.io/ws
-    tags:
-      - websocket
-      - real-time-data
-      - market-data
-      - stock-api
-      - crypto-api
-      - forex-api
-      - financial-data
-    properties:
-      - type: AsyncAPI
-        url: asyncapi/infoway-real-time-market-data-api-streaming-asyncapi.yml
-      - type: Documentation
-        url: https://docs.infoway.io/websocket-api/endpoints.md
-      - type: APIReference
-        url: https://infoway.readme.io/reference/ws-subscription
-  - name: Infoway Financial Data MCP Server
-    description: >-
-      Official Model Context Protocol server (PyPI infoway-mcp-server) exposing 17 tools over stdio for
-      real-time quotes, depth, K-line, market temperature and breadth, global indexes, industry and concept
-      sectors, plate members and heatmaps, and single-stock fundamentals (company overview, valuation,
-      analyst ratings, panorama, price drivers). Authenticated with the same API key via the
-      INFOWAY_API_KEY environment variable. Local/stdio only — there is no hosted remote endpoint.
-    humanURL: https://docs.infoway.io/sdk-and-tools/mcp-server.md
-    baseURL: https://data.infoway.io
-    tags:
-      - mcp
-      - agents
-      - market-data
-      - financial-data
-      - real-time-data
-    properties:
-      - type: MCPServer
-        url: mcp/infoway-real-time-market-data-api-mcp.yml
-      - type: ToolCrosswalk
-        url: mcp/infoway-real-time-market-data-api-tool-crosswalk.yml
-      - type: Documentation
-        url: https://docs.infoway.io/sdk-and-tools/mcp-server.md
-      - type: SourceCode
-        url: https://github.com/infoway-api/infoway-mcp-server
+- name: Infoway WebSocket Streaming API
+  description: >-
+    Persistent WebSocket connection for real-time trades, order-book depth, candlesticks and multilingual
+    news. Integer protocol-code framing (10000 subscribe trade, 10002 trade push, 10003/10005 depth, 10006/10008
+    candles, 10020/10022 news, 11000-11002 unsubscribe) with a client-supplied trace id and a mandatory
+    heartbeat (code 10010) at least once per minute. API key is supplied as the apikey query parameter
+    on the connection URL.
+  humanURL: https://docs.infoway.io/websocket-api/endpoints.md
+  baseURL: wss://data.infoway.io/ws
+  tags:
+  - websocket
+  - real-time-data
+  - market-data
+  - stock-api
+  - crypto-api
+  - forex-api
+  - financial-data
+  properties:
+  - type: AsyncAPI
+    url: asyncapi/infoway-real-time-market-data-api-streaming-asyncapi.yml
+  - type: Documentation
+    url: https://docs.infoway.io/websocket-api/endpoints.md
+  - type: APIReference
+    url: https://infoway.readme.io/reference/ws-subscription
+- name: Infoway Financial Data MCP Server
+  description: >-
+    Official Model Context Protocol server (PyPI infoway-mcp-server) exposing 17 tools over stdio for
+    real-time quotes, depth, K-line, market temperature and breadth, global indexes, industry and concept
+    sectors, plate members and heatmaps, and single-stock fundamentals (company overview, valuation, analyst
+    ratings, panorama, price drivers). Authenticated with the same API key via the INFOWAY_API_KEY environment
+    variable. Local/stdio only — there is no hosted remote endpoint.
+  humanURL: https://docs.infoway.io/sdk-and-tools/mcp-server.md
+  baseURL: https://data.infoway.io
+  tags:
+  - mcp
+  - agents
+  - market-data
+  - financial-data
+  - real-time-data
+  properties:
+  - type: MCPServer
+    url: mcp/infoway-real-time-market-data-api-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/infoway-real-time-market-data-api-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.infoway.io/sdk-and-tools/mcp-server.md
+  - type: SourceCode
+    url: https://github.com/infoway-api/infoway-mcp-server
+- aid: infoway-real-time-market-data-api:infoway-real-time-market-data-api-common-api
+  name: Infoway Real-time Market Data API Common API
+  description: The Common API from Infoway Real-time Market Data API — 7 operation(s) for common.
+  humanURL: https://infoway.readme.io/reference/quick-start
+  baseURL: https://data.infoway.io
+  tags:
+  - Common
+  properties:
+  - type: OpenAPI
+    url: openapi/infoway-real-time-market-data-api-common-api-openapi.yml
+  - type: Documentation
+    url: https://docs.infoway.io/rest-api/http-endpoints
+  - type: APIReference
+    url: https://infoway.readme.io/reference/quick-start
+  - type: LLMsTxt
+    url: https://docs.infoway.io/llms.txt
+- aid: infoway-real-time-market-data-api:infoway-real-time-market-data-api-crypto-api
+  name: Infoway Real-time Market Data API Crypto API
+  description: The Crypto API from Infoway Real-time Market Data API — 3 operation(s) for crypto.
+  humanURL: https://infoway.readme.io/reference/quick-start
+  baseURL: https://data.infoway.io
+  tags:
+  - Crypto
+  properties:
+  - type: OpenAPI
+    url: openapi/infoway-real-time-market-data-api-crypto-api-openapi.yml
+  - type: Documentation
+    url: https://docs.infoway.io/rest-api/http-endpoints
+  - type: APIReference
+    url: https://infoway.readme.io/reference/quick-start
+  - type: LLMsTxt
+    url: https://docs.infoway.io/llms.txt
+- aid: infoway-real-time-market-data-api:infoway-real-time-market-data-api-stock-api
+  name: Infoway Real-time Market Data API Stock API
+  description: The Stock API from Infoway Real-time Market Data API — 3 operation(s) for stock.
+  humanURL: https://infoway.readme.io/reference/quick-start
+  baseURL: https://data.infoway.io
+  tags:
+  - Stock
+  properties:
+  - type: OpenAPI
+    url: openapi/infoway-real-time-market-data-api-stock-api-openapi.yml
+  - type: Documentation
+    url: https://docs.infoway.io/rest-api/http-endpoints
+  - type: APIReference
+    url: https://infoway.readme.io/reference/quick-start
+  - type: LLMsTxt
+    url: https://docs.infoway.io/llms.txt
 maintainers:
   - FN: Infoway Real-time Market Data API
     url: https://infoway.io/en
@@ -116,6 +133,10 @@ generated:
   confidence: 93
   at: '2026-08-08T07:31:04.745Z'
 common:
+- type: Overlay
+  url: overlays/infoway-real-time-market-data-api-openapi-overlay.yaml
+- type: IssueTracker
+  url: https://github.com/infoway-api/infoway-mcp-server/issues
 - type: DomainSecurity
   url: security/infoway-real-time-market-data-api-domain-security.yml
 - type: Authentication
