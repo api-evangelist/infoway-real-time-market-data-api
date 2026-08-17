@@ -9,7 +9,7 @@ description: >-
   issued against (Free through Professional). Infoway publishes per-endpoint OpenAPI 3.0.0 definitions on
   its ReadMe developer hub, official Python, Node.js and Java SDKs, an llms.txt documentation index, and a
   stdio MCP server exposing 17 financial-data tools with a provider-authored Agent Skill.
-url: https://infoway-real-time-market-data-api.apievangelist.com/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/infoway-real-time-market-data-api/refs/heads/main/apis.yml
 image: https://infoway.io/favicon.png
 created: '2026-08-08'
 modified: '2026-08-09'
