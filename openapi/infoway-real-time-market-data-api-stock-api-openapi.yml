@@ -1,0 +1,215 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: REST Stock API
+  description: Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/<page>.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.
+servers:
+- url: https://data.infoway.io
+tags:
+- name: Stock
+paths:
+  /stock/batch_kline/{klineType}/{klineNum}/{codes}:
+    get:
+      description: ''
+      operationId: get_stockbatch_kline{klineType}{klineNum}{codes}
+      responses:
+        '200':
+          description: ''
+      parameters:
+      - name: klineType
+        in: path
+        required: true
+        description: kline类型，多个用,间隔，参考上面的kline类型
+        schema:
+          type: string
+          default: '1'
+      - name: klineNum
+        in: path
+        required: true
+        description: 最近多少根k线，最大支持500
+        schema:
+          type: string
+          default: '10'
+      - name: codes
+        in: path
+        required: true
+        description: 标的代码，最大支持100
+        schema:
+          type: string
+          default: 002594.SZ,00285.HK,TSLA.US
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Stock
+  /stock/batch_depth/{codes}:
+    get:
+      description: ''
+      operationId: get_stockbatch_depth{codes}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value:
+                    ret: 200
+                    msg: success
+                    traceId: 972c7bdd-a151-4a13-b4a1-a24a30c65783
+                    data:
+                    - s: 00285.HK
+                      t: 1747382976831
+                      a:
+                      - - '34.650'
+                        - '34.700'
+                        - '34.750'
+                        - '34.800'
+                        - '34.850'
+                        - '34.900'
+                        - '34.950'
+                        - '35.000'
+                        - '35.050'
+                        - '35.100'
+                      - - '44000'
+                        - '44500'
+                        - '225500'
+                        - '124000'
+                        - '147500'
+                        - '135500'
+                        - '65000'
+                        - '111000'
+                        - '39500'
+                        - '124500'
+                      b:
+                      - - '34.600'
+                        - '34.550'
+                        - '34.500'
+                        - '34.450'
+                        - '34.400'
+                        - '34.350'
+                        - '34.300'
+                        - '34.250'
+                        - '34.200'
+                        - '34.150'
+                      - - '109500'
+                        - '39500'
+                        - '130500'
+                        - '89000'
+                        - '144000'
+                        - '246500'
+                        - '231500'
+                        - '83000'
+                        - '224000'
+                        - '22000'
+                    - s: TSLA.US
+                      t: 1746955123066
+                      a: null
+                      b: null
+                    - s: 002594.SZ
+                      t: 1747378802012
+                      a:
+                      - - '389.17'
+                        - '389.45'
+                        - '389.50'
+                        - '389.57'
+                        - '389.69'
+                      - - '60'
+                        - '6'
+                        - '1'
+                        - '1'
+                        - '8'
+                      b:
+                      - - '389.16'
+                        - '389.09'
+                        - '389.05'
+                        - '389.02'
+                        - '389.01'
+                      - - '6'
+                        - '1'
+                        - '1'
+                        - '1'
+                        - '10'
+      parameters:
+      - name: codes
+        in: path
+        required: true
+        description: 标的列表，多个用,间隔
+        schema:
+          type: string
+          default: 002594.SZ,00285.HK,TSLA.US,AUDCAD,HK50,XNIUSD
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Stock
+  /stock/batch_trade/{codes}:
+    get:
+      description: ''
+      operationId: get_stockbatch_trade{codes}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value:
+                    ret: 200
+                    msg: success
+                    traceId: c49a0866-c551-4951-927e-fe6a55c9fa53
+                    data:
+                    - s: 00285.HK
+                      t: 1750147730935
+                      p: '31.350'
+                      v: '171500'
+                      vw: '5376525.000'
+                      td: 0
+                    - s: TSLA.US
+                      t: 1750177279200
+                      p: '320.960'
+                      v: '100'
+                      vw: '32096.000'
+                      td: 0
+                    - s: 002594.SZ
+                      t: 1750143600999
+                      p: '343.74'
+                      v: '1395'
+                      vw: '479517.30'
+                      td: 1
+      parameters:
+      - name: codes
+        in: path
+        required: true
+        description: 标的列表，多个用,间隔
+        schema:
+          type: string
+          default: 002594.SZ,00285.HK,TSLA.US,AUDCAD,HK50,XNIUSD
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Stock
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: apiKey
+x-evidence:
+  harvested: '2026-08-09'
+  method: searched
+  sources:
+  - https://infoway.readme.io/reference/get-crypto-candles.md
+  - https://infoway.readme.io/reference/get-crypto-orderbook.md
+  - https://infoway.readme.io/reference/get-crypto-trades.md
+  - https://infoway.readme.io/reference/get-forex-candles.md
+  - https://infoway.readme.io/reference/get-forex-depth.md
+  - https://infoway.readme.io/reference/get-forex-trades.md
+  - https://infoway.readme.io/reference/get-market-trading-days.md
+  - https://infoway.readme.io/reference/get-stock-candles.md
+  - https://infoway.readme.io/reference/get-stock-orderbook.md
+  - https://infoway.readme.io/reference/get-stock-trades.md
+  - https://infoway.readme.io/reference/get-symbol-basic-info.md
+  - https://infoway.readme.io/reference/get-symbol-list.md
+  - https://infoway.readme.io/reference/get-symbol-market-info.md
+  note: Each source page returned HTTP 200 and embedded a complete OpenAPI 3.0.0 document for one operation.

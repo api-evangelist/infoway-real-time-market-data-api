@@ -1,0 +1,23 @@
+{
+  "provider": "infoway-real-time-market-data-api",
+  "sources": [
+    "infoway-real-time-market-data-api-common-api-openapi.yml",
+    "infoway-real-time-market-data-api-crypto-api-openapi.yml",
+    "infoway-real-time-market-data-api-stock-api-openapi.yml"
+  ],
+  "outputs": [
+    "infoway-real-time-market-data-api-common-api-openapi.yml",
+    "infoway-real-time-market-data-api-crypto-api-openapi.yml",
+    "infoway-real-time-market-data-api-stock-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "infoway-real-time-market-data-api-common-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "infoway-real-time-market-data-api-crypto-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "infoway-real-time-market-data-api-stock-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

@@ -7,8 +7,8 @@ server:
   display_name: Infoway Financial Data MCP Server
   transport: stdio
   hosted: false
-  note: Local/stdio server only — Infoway publishes no hosted or remote (HTTP/SSE) MCP endpoint. Run it with uvx
-    or pip.
+  note: Local/stdio server only — Infoway publishes no hosted or remote (HTTP/SSE) MCP endpoint. Run it
+    with uvx or pip.
   install:
     uvx: uvx infoway-mcp-server
     pip: pip install infoway-mcp-server
@@ -19,7 +19,8 @@ server:
   auth:
     env: INFOWAY_API_KEY
     type: apiKey
-    note: Same API key as the REST/WebSocket surface; sent as the apiKey header by the SDK the server wraps.
+    note: Same API key as the REST/WebSocket surface; sent as the apiKey header by the SDK the server
+      wraps.
   clients:
   - Claude Desktop
   - Cursor
@@ -35,15 +36,15 @@ x-evidence:
 tools:
 - name: get_realtime_trade
   category: realtime
-  description: 'Get real-time trade data for stocks, crypto, or forex. Returns latest price, volume, change, and
-    timestamp for each symbol. Example codes: ''AAPL.US'', ''BTCUSDT'', ''700.HK'', ''USDJPY''.'
+  description: 'Get real-time trade data for stocks, crypto, or forex. Returns latest price, volume, change,
+    and timestamp for each symbol. Example codes: ''AAPL.US'', ''BTCUSDT'', ''700.HK'', ''USDJPY''.'
   input_schema:
     type: object
     properties:
       codes:
         type: string
-        description: 'Comma-separated symbol codes. Examples: ''AAPL.US'' (US stock), ''700.HK'' (HK stock), ''BTCUSDT''
-          (crypto), ''USDJPY'' (forex).'
+        description: 'Comma-separated symbol codes. Examples: ''AAPL.US'' (US stock), ''700.HK'' (HK stock),
+          ''BTCUSDT'' (crypto), ''USDJPY'' (forex).'
       market_type:
         type: string
         enum:
@@ -52,15 +53,15 @@ tools:
         - common
         - japan
         - india
-        description: Market type to query. 'stock' for HK/US/CN equities, 'crypto' for digital currencies, 'common'
-          for forex & commodities, 'japan' for Japan equities, 'india' for India equities.
+        description: Market type to query. 'stock' for HK/US/CN equities, 'crypto' for digital currencies,
+          'common' for forex & commodities, 'japan' for Japan equities, 'india' for India equities.
         default: stock
     required:
     - codes
 - name: get_market_depth
   category: realtime
-  description: Get real-time order book / market depth (bid/ask levels) for given symbols. Returns arrays of bid
-    and ask prices with their quantities.
+  description: Get real-time order book / market depth (bid/ask levels) for given symbols. Returns arrays
+    of bid and ask prices with their quantities.
   input_schema:
     type: object
     properties:
@@ -81,8 +82,8 @@ tools:
     - codes
 - name: get_kline
   category: realtime
-  description: 'Get candlestick / K-line (OHLCV) data for given symbols. Supports multiple intervals: 1m, 5m, 15m,
-    30m, 1h, 2h, 4h, daily, weekly, monthly, quarterly, yearly.'
+  description: 'Get candlestick / K-line (OHLCV) data for given symbols. Supports multiple intervals:
+    1m, 5m, 15m, 30m, 1h, 2h, 4h, daily, weekly, monthly, quarterly, yearly.'
   input_schema:
     type: object
     properties:
@@ -114,8 +115,8 @@ tools:
         - 10
         - 11
         - 12
-        description: 'K-line interval: 1=1min, 2=5min, 3=15min, 4=30min, 5=1hour, 6=2hour, 7=4hour, 8=daily, 9=weekly,
-          10=monthly, 11=quarterly, 12=yearly.'
+        description: 'K-line interval: 1=1min, 2=5min, 3=15min, 4=30min, 5=1hour, 6=2hour, 7=4hour, 8=daily,
+          9=weekly, 10=monthly, 11=quarterly, 12=yearly.'
         default: 8
       count:
         type: integer
@@ -125,20 +126,21 @@ tools:
     - codes
 - name: get_market_temperature
   category: market-overview
-  description: Get market temperature / sentiment overview for specified markets. Shows overall market heat, advance-decline
-    ratios, and sentiment indicators. Useful for gauging whether the market is bullish or bearish.
+  description: Get market temperature / sentiment overview for specified markets. Shows overall market
+    heat, advance-decline ratios, and sentiment indicators. Useful for gauging whether the market is bullish
+    or bearish.
   input_schema:
     type: object
     properties:
       market:
         type: string
-        description: 'Comma-separated market codes. Available: HK, US, CN, SG. Example: ''HK,US'' for Hong Kong
-          and US markets.'
+        description: 'Comma-separated market codes. Available: HK, US, CN, SG. Example: ''HK,US'' for
+          Hong Kong and US markets.'
         default: HK,US,CN,SG
 - name: get_market_breadth
   category: market-overview
-  description: Get market breadth data showing advance/decline statistics. Includes number of advancing, declining,
-    and unchanged stocks.
+  description: Get market breadth data showing advance/decline statistics. Includes number of advancing,
+    declining, and unchanged stocks.
   input_schema:
     type: object
     properties:
@@ -149,15 +151,15 @@ tools:
     - market
 - name: get_global_indexes
   category: market-overview
-  description: Get real-time data for major global stock market indexes. Includes Dow Jones, S&P 500, Nasdaq, Hang
-    Seng, SSE Composite, Nikkei, etc.
+  description: Get real-time data for major global stock market indexes. Includes Dow Jones, S&P 500,
+    Nasdaq, Hang Seng, SSE Composite, Nikkei, etc.
   input_schema:
     type: object
     properties: {}
 - name: get_leading_industries
   category: market-overview
-  description: Get top-performing industry sectors for a market, ranked by performance. Useful for identifying sector
-    rotation and market leaders.
+  description: Get top-performing industry sectors for a market, ranked by performance. Useful for identifying
+    sector rotation and market leaders.
   input_schema:
     type: object
     properties:
@@ -172,8 +174,8 @@ tools:
     - market
 - name: get_industry_list
   category: sector
-  description: Get the full list of industry sectors for a market with their performance data. Includes change percentage,
-    member count, and leader stocks.
+  description: Get the full list of industry sectors for a market with their performance data. Includes
+    change percentage, member count, and leader stocks.
   input_schema:
     type: object
     properties:
@@ -188,8 +190,8 @@ tools:
     - market
 - name: get_concept_list
   category: sector
-  description: Get the list of concept/thematic sectors for a market. Concepts are thematic groupings like 'AI',
-    'EV', 'Metaverse', etc.
+  description: Get the list of concept/thematic sectors for a market. Concepts are thematic groupings
+    like 'AI', 'EV', 'Metaverse', etc.
   input_schema:
     type: object
     properties:
@@ -204,8 +206,8 @@ tools:
     - market
 - name: get_plate_members
   category: sector
-  description: Get all stock members of a specific industry or concept plate/sector. Returns individual stocks with
-    their price and change data.
+  description: Get all stock members of a specific industry or concept plate/sector. Returns individual
+    stocks with their price and change data.
   input_schema:
     type: object
     properties:
@@ -216,8 +218,8 @@ tools:
     - plate_symbol
 - name: get_plate_heatmap
   category: sector
-  description: Get sector heatmap data for a market showing plate/sector performance. Useful for visualizing which
-    sectors are hot or cold.
+  description: Get sector heatmap data for a market showing plate/sector performance. Useful for visualizing
+    which sectors are hot or cold.
   input_schema:
     type: object
     properties:
@@ -232,8 +234,8 @@ tools:
     - market
 - name: get_company_overview
   category: fundamentals
-  description: Get company profile and overview including business description, CEO, employee count, founding date,
-    headquarters, and key metrics.
+  description: Get company profile and overview including business description, CEO, employee count, founding
+    date, headquarters, and key metrics.
   input_schema:
     type: object
     properties:
@@ -244,8 +246,8 @@ tools:
     - symbol
 - name: get_stock_valuation
   category: fundamentals
-  description: Get stock valuation metrics including P/E ratio, P/B ratio, market cap, EV/EBITDA, dividend yield,
-    and other fundamental ratios.
+  description: Get stock valuation metrics including P/E ratio, P/B ratio, market cap, EV/EBITDA, dividend
+    yield, and other fundamental ratios.
   input_schema:
     type: object
     properties:
@@ -256,8 +258,8 @@ tools:
     - symbol
 - name: get_stock_ratings
   category: fundamentals
-  description: Get analyst ratings and consensus for a stock. Includes buy/sell/hold counts, target price, and rating
-    distribution.
+  description: Get analyst ratings and consensus for a stock. Includes buy/sell/hold counts, target price,
+    and rating distribution.
   input_schema:
     type: object
     properties:
@@ -268,8 +270,8 @@ tools:
     - symbol
 - name: get_stock_panorama
   category: fundamentals
-  description: Get a panoramic summary of a stock including key financial data, performance metrics, and comprehensive
-    stock overview.
+  description: Get a panoramic summary of a stock including key financial data, performance metrics, and
+    comprehensive stock overview.
   input_schema:
     type: object
     properties:
@@ -280,8 +282,8 @@ tools:
     - symbol
 - name: get_stock_drivers
   category: fundamentals
-  description: Get the key price drivers and catalysts for a stock. Shows factors that are influencing the stock
-    price movement.
+  description: Get the key price drivers and catalysts for a stock. Shows factors that are influencing
+    the stock price movement.
   input_schema:
     type: object
     properties:
@@ -292,11 +294,19 @@ tools:
     - symbol
 - name: search_symbols
   category: utility
-  description: Search and list available trading symbols. Returns symbols with their names, market, and type information.
-    Optionally filter by market.
+  description: Search and list available trading symbols. Returns symbols with their names, market, and
+    type information. Optionally filter by market.
   input_schema:
     type: object
     properties:
       market:
         type: string
-        description: Filter by market code (e.g. 'HK', 'US', 'CN', 'SG', 'JP', 'IN'). Leave empty to get all markets.
+        description: Filter by market code (e.g. 'HK', 'US', 'CN', 'SG', 'JP', 'IN'). Leave empty to get
+          all markets.
+deployment:
+  mode: remote
+  endpoint: https://clawhub.ai/infoway-api/infoway-financial-data
+  verified: probed
+  probe: http-500
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,383 @@
+{
+  "item": [
+    {
+      "id": "2881eb9a-51c6-42ce-83b6-ea833787609e",
+      "name": "Crypto",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b61c7ad-d965-43ec-ae29-6d5ce536b77e",
+          "name": "get cryptobatch kline{kline Type}{kline Num}{codes}",
+          "request": {
+            "name": "get cryptobatch kline{kline Type}{kline Num}{codes}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "crypto",
+                "batch_kline",
+                ":klineType",
+                ":klineNum",
+                ":codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "1",
+                  "key": "klineType",
+                  "description": "(Required) kline类型，多个用,间隔，参考上面的kline类型"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "10",
+                  "key": "klineNum",
+                  "description": "(Required) 最近多少根k线，最大支持500"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "BTCUSDT,BNBUSDT",
+                  "key": "codes",
+                  "description": "(Required) 标的代码，最大支持100"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4d6139ef-55e0-4ab9-aafb-734b4c674d9a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "crypto",
+                    "batch_kline",
+                    ":klineType",
+                    ":klineNum",
+                    ":codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "1",
+                      "key": "klineType",
+                      "description": "(Required) kline类型，多个用,间隔，参考上面的kline类型"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "klineNum",
+                      "description": "(Required) 最近多少根k线，最大支持500"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "BTCUSDT,BNBUSDT",
+                      "key": "codes",
+                      "description": "(Required) 标的代码，最大支持100"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85edb7b0-9d40-4419-a690-2d34b310c2b9",
+          "name": "get cryptobatch depth{codes}",
+          "request": {
+            "name": "get cryptobatch depth{codes}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "crypto",
+                "batch_depth",
+                ":codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "BTCUSDT,BNBUSDT",
+                  "key": "codes",
+                  "description": "(Required) 标的列表，多个用,间隔，最大支持100个标的"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8c91220d-403f-4150-a764-06a8eda2cffb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "crypto",
+                    "batch_depth",
+                    ":codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "BTCUSDT,BNBUSDT",
+                      "key": "codes",
+                      "description": "(Required) 标的列表，多个用,间隔，最大支持100个标的"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6a90e11-3648-43a9-81ab-cd31f0811a20",
+          "name": "get cryptobatch trade{codes}",
+          "request": {
+            "name": "get cryptobatch trade{codes}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "crypto",
+                "batch_trade",
+                ":codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "BTCUSDT,BNBUSDT",
+                  "key": "codes",
+                  "description": "(Required) 标的列表，多个用,间隔，最大支持100个标的"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8bb81dd2-619b-4fbc-9b73-d332eb0c4106",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "crypto",
+                    "batch_trade",
+                    ":codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "BTCUSDT,BNBUSDT",
+                      "key": "codes",
+                      "description": "(Required) 标的列表，多个用,间隔，最大支持100个标的"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ret\": 200,\n  \"msg\": \"success\",\n  \"traceId\": \"854341a1-4779-4825-b713-74ac71ba75c9\",\n  \"data\": [\n    {\n      \"s\": \"BTCUSDT\",\n      \"t\": 1750177310314,\n      \"p\": \"104312.5\",\n      \"v\": \"0.01\",\n      \"vw\": \"1043.125\",\n      \"td\": 1\n    },\n    {\n      \"s\": \"BNBUSDT\",\n      \"t\": 1750177309795,\n      \"p\": \"645.35\",\n      \"v\": \"0.272\",\n      \"vw\": \"175.5352\",\n      \"td\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.infoway.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5c49a219-b43f-4945-8b1e-57a0540a3d32",
+    "name": "REST Crypto API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/<page>.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.",
+      "type": "text/plain"
+    }
+  }
+}

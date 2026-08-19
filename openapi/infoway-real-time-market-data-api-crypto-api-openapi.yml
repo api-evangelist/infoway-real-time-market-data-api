@@ -1,0 +1,127 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: REST Crypto API
+  description: Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/<page>.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.
+servers:
+- url: https://data.infoway.io
+tags:
+- name: Crypto
+paths:
+  /crypto/batch_kline/{klineType}/{klineNum}/{codes}:
+    get:
+      description: ''
+      operationId: get_cryptobatch_kline{klineType}{klineNum}{codes}
+      responses:
+        '200':
+          description: ''
+      parameters:
+      - name: klineType
+        in: path
+        required: true
+        description: kline类型，多个用,间隔，参考上面的kline类型
+        schema:
+          type: string
+          default: '1'
+      - name: klineNum
+        in: path
+        required: true
+        description: 最近多少根k线，最大支持500
+        schema:
+          type: string
+          default: '10'
+      - name: codes
+        in: path
+        required: true
+        description: 标的代码，最大支持100
+        schema:
+          type: string
+          default: BTCUSDT,BNBUSDT
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Crypto
+  /crypto/batch_depth/{codes}:
+    get:
+      description: ''
+      operationId: get_cryptobatch_depth{codes}
+      responses:
+        '200':
+          description: ''
+      parameters:
+      - name: codes
+        in: path
+        required: true
+        description: 标的列表，多个用,间隔，最大支持100个标的
+        schema:
+          type: string
+          default: BTCUSDT,BNBUSDT
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Crypto
+  /crypto/batch_trade/{codes}:
+    get:
+      description: ''
+      operationId: get_cryptobatch_trade{codes}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value:
+                    ret: 200
+                    msg: success
+                    traceId: 854341a1-4779-4825-b713-74ac71ba75c9
+                    data:
+                    - s: BTCUSDT
+                      t: 1750177310314
+                      p: '104312.5'
+                      v: '0.01'
+                      vw: '1043.125'
+                      td: 1
+                    - s: BNBUSDT
+                      t: 1750177309795
+                      p: '645.35'
+                      v: '0.272'
+                      vw: '175.5352'
+                      td: 1
+      parameters:
+      - name: codes
+        in: path
+        required: true
+        description: 标的列表，多个用,间隔，最大支持100个标的
+        schema:
+          type: string
+          default: BTCUSDT,BNBUSDT
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Crypto
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: apiKey
+x-evidence:
+  harvested: '2026-08-09'
+  method: searched
+  sources:
+  - https://infoway.readme.io/reference/get-crypto-candles.md
+  - https://infoway.readme.io/reference/get-crypto-orderbook.md
+  - https://infoway.readme.io/reference/get-crypto-trades.md
+  - https://infoway.readme.io/reference/get-forex-candles.md
+  - https://infoway.readme.io/reference/get-forex-depth.md
+  - https://infoway.readme.io/reference/get-forex-trades.md
+  - https://infoway.readme.io/reference/get-market-trading-days.md
+  - https://infoway.readme.io/reference/get-stock-candles.md
+  - https://infoway.readme.io/reference/get-stock-orderbook.md
+  - https://infoway.readme.io/reference/get-stock-trades.md
+  - https://infoway.readme.io/reference/get-symbol-basic-info.md
+  - https://infoway.readme.io/reference/get-symbol-list.md
+  - https://infoway.readme.io/reference/get-symbol-market-info.md
+  note: Each source page returned HTTP 200 and embedded a complete OpenAPI 3.0.0 document for one operation.

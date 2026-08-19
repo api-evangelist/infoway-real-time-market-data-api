@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "REST Crypto API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Crypto",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_cryptobatch_kline{klineType}{klineNum}{codes}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/crypto/batch_kline/:klineType/:klineNum/:codes",
+            "params": [
+              {
+                "name": "klineType",
+                "value": "",
+                "type": "path",
+                "description": "kline类型，多个用,间隔，参考上面的kline类型"
+              },
+              {
+                "name": "klineNum",
+                "value": "",
+                "type": "path",
+                "description": "最近多少根k线，最大支持500"
+              },
+              {
+                "name": "codes",
+                "value": "",
+                "type": "path",
+                "description": "标的代码，最大支持100"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_cryptobatch_depth{codes}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/crypto/batch_depth/:codes",
+            "params": [
+              {
+                "name": "codes",
+                "value": "",
+                "type": "path",
+                "description": "标的列表，多个用,间隔，最大支持100个标的"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_cryptobatch_trade{codes}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/crypto/batch_trade/:codes",
+            "params": [
+              {
+                "name": "codes",
+                "value": "",
+                "type": "path",
+                "description": "标的列表，多个用,间隔，最大支持100个标的"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

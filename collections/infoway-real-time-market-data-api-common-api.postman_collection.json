@@ -1,0 +1,861 @@
+{
+  "item": [
+    {
+      "id": "3a8e83cc-8188-4145-a631-c80a4c44b7c9",
+      "name": "Common",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "032a5475-34d8-4f35-af6f-f621f9946ea7",
+          "name": "get commonbatch kline{kline Type}{kline Num}{codes}",
+          "request": {
+            "name": "get commonbatch kline{kline Type}{kline Num}{codes}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "batch_kline",
+                ":klineType",
+                ":klineNum",
+                ":codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "1",
+                  "key": "klineType",
+                  "description": "(Required) kline类型，多个用,间隔，参考上面的kline类型"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "10",
+                  "key": "klineNum",
+                  "description": "(Required) 最近多少根k线，最大支持500"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "USDCNY,XAUAUD,CN50",
+                  "key": "codes",
+                  "description": "(Required) 标的代码，最大支持100"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "531cecf0-ac91-41fa-80fa-af3eb9eaf888",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "batch_kline",
+                    ":klineType",
+                    ":klineNum",
+                    ":codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "1",
+                      "key": "klineType",
+                      "description": "(Required) kline类型，多个用,间隔，参考上面的kline类型"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "klineNum",
+                      "description": "(Required) 最近多少根k线，最大支持500"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "USDCNY,XAUAUD,CN50",
+                      "key": "codes",
+                      "description": "(Required) 标的代码，最大支持100"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ret\": 200,\n  \"msg\": \"success\",\n  \"traceId\": \"43fe7163-abb2-4a59-b6b2-2af4dc8c4141\",\n  \"data\": [\n    {\n      \"s\": \"XAUAUD\",\n      \"respList\": [\n        {\n          \"t\": \"1750177320\",\n          \"h\": \"5190.07400\",\n          \"o\": \"5187.17600\",\n          \"l\": \"5187.17600\",\n          \"c\": \"5190.07400\",\n          \"v\": \"7.0\",\n          \"vw\": \"36324.7220\",\n          \"pc\": \"0.07%\",\n          \"pca\": \"3.78600\"\n        },\n        {\n          \"t\": \"1750177260\",\n          \"h\": \"5187.41400\",\n          \"o\": \"5186.28800\",\n          \"l\": \"5186.28800\",\n          \"c\": \"5187.41400\",\n          \"v\": \"13.0\",\n          \"vw\": \"67425.1220\",\n          \"pc\": \"0.01%\",\n          \"pca\": \"0.52400\"\n        }\n      ]\n    },\n    {\n      \"s\": \"USDCNY\",\n      \"respList\": [\n        {\n          \"t\": \"1750175580\",\n          \"h\": \"7.18400\",\n          \"o\": \"7.18400\",\n          \"l\": \"7.18400\",\n          \"c\": \"7.18400\",\n          \"v\": \"1.0\",\n          \"vw\": \"7.1840\",\n          \"pc\": \"0.00%\",\n          \"pca\": \"0.00030\"\n        },\n        {\n          \"t\": \"1750175280\",\n          \"h\": \"7.18370\",\n          \"o\": \"7.18370\",\n          \"l\": \"7.18370\",\n          \"c\": \"7.18370\",\n          \"v\": \"1.0\",\n          \"vw\": \"7.18370\",\n          \"pc\": \"0.00%\",\n          \"pca\": \"0.00010\"\n        }\n      ]\n    },\n    {\n      \"s\": \"CN50\",\n      \"respList\": [\n        {\n          \"t\": \"1750177320\",\n          \"h\": \"13441.17000\",\n          \"o\": \"13441.17000\",\n          \"l\": \"13440.17000\",\n          \"c\": \"13440.17000\",\n          \"v\": \"2.0\",\n          \"vw\": \"26881.340\",\n          \"pc\": \"-0.01%\",\n          \"pca\": \"-2.00000\"\n        },\n        {\n          \"t\": \"1750177260\",\n          \"h\": \"13442.17000\",\n          \"o\": \"13442.17000\",\n          \"l\": \"13441.17000\",\n          \"c\": \"13441.17000\",\n          \"v\": \"2.0\",\n          \"vw\": \"26883.340\",\n          \"pc\": \"-0.01%\",\n          \"pca\": \"-1.00000\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71efe182-280b-4593-ae08-f89a905dfee5",
+          "name": "get commonbatch depth{codes}",
+          "request": {
+            "name": "get commonbatch depth{codes}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "batch_depth",
+                ":codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "USDCNY,XAUAUD,CN50",
+                  "key": "codes",
+                  "description": "(Required) 标的列表，多个用,间隔，最大支持100个标的"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f061f9c9-8241-48ce-a7ba-61cf88c294fb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "batch_depth",
+                    ":codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "USDCNY,XAUAUD,CN50",
+                      "key": "codes",
+                      "description": "(Required) 标的列表，多个用,间隔，最大支持100个标的"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9234bf0-48cb-4f66-80d9-1bc52f6caceb",
+          "name": "get commonbatch trade{codes}",
+          "request": {
+            "name": "get commonbatch trade{codes}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "batch_trade",
+                ":codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "USDCNY,XAUAUD,CN50",
+                  "key": "codes",
+                  "description": "(Required) 标的列表，多个用,间隔，最大支持100个标的"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "65b2fb8d-c0b0-49cb-8f15-b91b0595daa7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "batch_trade",
+                    ":codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "USDCNY,XAUAUD,CN50",
+                      "key": "codes",
+                      "description": "(Required) 标的列表，多个用,间隔，最大支持100个标的"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ret\": 200,\n  \"msg\": \"success\",\n  \"traceId\": \"27bdafb1-c735-4499-aad1-553820284895\",\n  \"data\": [\n    {\n      \"s\": \"XAUAUD\",\n      \"t\": 1750177346999,\n      \"p\": \"5188.211\",\n      \"v\": \"3.0\",\n      \"vw\": \"15564.6330\",\n      \"td\": 0\n    },\n    {\n      \"s\": \"USDCNY\",\n      \"t\": 1750175583999,\n      \"p\": \"7.184\",\n      \"v\": \"1.0\",\n      \"vw\": \"7.1840\",\n      \"td\": 0\n    },\n    {\n      \"s\": \"CN50\",\n      \"t\": 1750177343999,\n      \"p\": \"13441.17\",\n      \"v\": \"1.0\",\n      \"vw\": \"13441.170\",\n      \"td\": 0\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a5a2918-8e8f-4f78-9773-3e3c0619ec47",
+          "name": "get commonbasicmarketstrading days",
+          "request": {
+            "name": "get commonbasicmarketstrading days",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "basic",
+                "markets",
+                "trading_days"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "CN",
+                  "description": "(Required) 市场"
+                },
+                {
+                  "disabled": false,
+                  "key": "beginDay",
+                  "value": "20230101",
+                  "description": "(Required) 开始日期"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDay",
+                  "value": "20230301",
+                  "description": "(Required) 结束日期"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dc9cea23-5b6d-472b-a7ac-6794093be22c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "basic",
+                    "markets",
+                    "trading_days"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "market",
+                      "value": "CN"
+                    },
+                    {
+                      "key": "beginDay",
+                      "value": "20230101"
+                    },
+                    {
+                      "key": "endDay",
+                      "value": "20230301"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ret\": 200,\n  \"msg\": \"success\",\n  \"traceId\": \"46fbf427-a30e-48ff-8760-9fb20025c667\",\n  \"data\": {\n    \"trade_days\": [\n      \"20230102\",\n      \"20230103\",\n      \"20230104\",\n      \"20230105\",\n      \"20230106\",\n      \"20230109\",\n      \"20230110\",\n      \"20230111\",\n      \"20230112\",\n      \"20230113\",\n      \"20230116\",\n      \"20230117\",\n      \"20230118\",\n      \"20230119\",\n      \"20230120\",\n      \"20230123\",\n      \"20230124\",\n      \"20230125\",\n      \"20230126\",\n      \"20230127\",\n      \"20230130\",\n      \"20230131\",\n      \"20230201\",\n      \"20230202\",\n      \"20230203\",\n      \"20230206\",\n      \"20230207\",\n      \"20230208\",\n      \"20230209\",\n      \"20230210\",\n      \"20230213\",\n      \"20230214\",\n      \"20230215\",\n      \"20230216\",\n      \"20230217\",\n      \"20230220\",\n      \"20230221\",\n      \"20230222\",\n      \"20230223\",\n      \"20230224\",\n      \"20230227\",\n      \"20230228\",\n      \"20230301\"\n    ],\n    \"half_trade_days\": []\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cef8d4c5-c79f-4992-b1a1-4ce691f4f65f",
+          "name": "get symbolsinfo",
+          "request": {
+            "name": "get symbolsinfo",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "basic",
+                "symbols",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbols",
+                  "value": "000001.SZ,000002.SZ",
+                  "description": "(Required) 标的列表"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "STOCK_CN",
+                  "description": "(Required) 标的类型"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3e8ddbb5-de73-4a58-b76c-cde6421c0d89",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "basic",
+                    "symbols",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "000001.SZ,000002.SZ"
+                    },
+                    {
+                      "key": "type",
+                      "value": "STOCK_CN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ret\": 200,\n  \"msg\": \"success\",\n  \"traceId\": \"52327ed3-e96a-4e9a-a591-e910a0fcc563\",\n  \"data\": [\n    {\n      \"symbol\": \"000001.SZ\",\n      \"market\": \"CN\",\n      \"name_cn\": \"平安银行\",\n      \"name_en\": \"PAB\",\n      \"name_hk\": \"平安銀行\",\n      \"exchange\": \"SZSE\",\n      \"currency\": \"CNY\",\n      \"lot_size\": 100,\n      \"total_shares\": 19405918198,\n      \"circulating_shares\": 19405762053,\n      \"hk_shares\": 0,\n      \"eps\": \"2.2935271367158012\",\n      \"eps_ttm\": \"2.2504474951615995\",\n      \"bps\": \"22.4755662447835698\",\n      \"dividend_yield\": \"0.9649999999963929\",\n      \"stock_derivatives\": \"\",\n      \"board\": \"SZMainConnect\"\n    },\n    {\n      \"symbol\": \"000002.SZ\",\n      \"market\": \"CN\",\n      \"name_cn\": \"万科A\",\n      \"name_en\": \"Vanke\",\n      \"name_hk\": \"萬科A\",\n      \"exchange\": \"SZSE\",\n      \"currency\": \"CNY\",\n      \"lot_size\": 100,\n      \"total_shares\": 11930709471,\n      \"circulating_shares\": 9724196533,\n      \"hk_shares\": 0,\n      \"eps\": \"-4.147148946357911\",\n      \"eps_ttm\": \"-4.6403502137102706\",\n      \"bps\": \"16.4892858366243256\",\n      \"dividend_yield\": \"0\",\n      \"stock_derivatives\": \"\",\n      \"board\": \"SZMainConnect\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76989de0-7314-4d6b-877f-b0ba74813eab",
+          "name": "get commonbasicsymbols",
+          "request": {
+            "name": "get commonbasicsymbols",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "basic",
+                "symbols"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "STOCK_US",
+                  "description": "(Required) 标的类型，支持以下值：<br>- 股票类型：<br>  - `STOCK_US` (美股)<br>  - `STOCK_CN` (A股)<br>  - `STOCK_HK` (港股)<br>- 其他类型：<br>  - `FUTURES` (期货)<br>  - `FOREX` (外汇)<br>  - `ENERGY` (能源)<br>  - `METAL` (金属)<br>  - `CRYPTO` (加密货币)"
+                },
+                {
+                  "disabled": false,
+                  "key": "symbols",
+                  "value": ".DJI.US,.IXIC.US",
+                  "description": "标的列表，多个用,隔开"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7b9b5529-78f3-4a6d-bb1a-d10230853aaf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "basic",
+                    "symbols"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "STOCK_US"
+                    },
+                    {
+                      "key": "symbols",
+                      "value": ".DJI.US,.IXIC.US"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ret\": 200,\n  \"msg\": \"success\",\n  \"traceId\": \"ed8a84d9-4575-4077-bc1c-31b17d0c8977\",\n  \"data\": [\n    {\n      \"symbol\": \".DJI.US\",\n      \"name_cn\": \"道琼斯指数\",\n      \"name_hk\": \"道瓊斯指數\",\n      \"name_en\": \"Dow Jones Industrial Average\"\n    },\n    {\n      \"symbol\": \".IXIC.US\",\n      \"name_cn\": \"纳斯达克综合指数\",\n      \"name_hk\": \"納斯達克綜合指數\",\n      \"name_en\": \"NASDAQ Composite Index\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd0dc31b-58d7-479b-bb5d-652889f8ba04",
+          "name": "get commonbaiscmarkets",
+          "request": {
+            "name": "get commonbaiscmarkets",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "basic",
+                "markets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "84ba9416-256c-4220-8a47-6beaf4e76e97",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "basic",
+                    "markets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ret\": 200,\n  \"msg\": \"success\",\n  \"traceId\": \"7b32f9db-852b-4234-aafb-5766f9ba385e\",\n  \"data\": [\n    {\n      \"market\": \"CN\",\n      \"remark\": \"A 股市场\",\n      \"trade_schedules\": [\n        {\n          \"begin_time\": \"09:30:00\",\n          \"end_time\": \"11:30:00\",\n          \"type\": \"NormalTrade\"\n        },\n        {\n          \"begin_time\": \"13:00:00\",\n          \"end_time\": \"14:57:00\",\n          \"type\": \"NormalTrade\"\n        }\n      ]\n    },\n    {\n      \"market\": \"HK\",\n      \"remark\": \"港股市场\",\n      \"trade_schedules\": [\n        {\n          \"begin_time\": \"09:30:00\",\n          \"end_time\": \"12:00:00\",\n          \"type\": \"NormalTrade\"\n        },\n        {\n          \"begin_time\": \"13:00:00\",\n          \"end_time\": \"16:00:00\",\n          \"type\": \"NormalTrade\"\n        }\n      ]\n    },\n    {\n      \"market\": \"US\",\n      \"remark\": \"美股市场\",\n      \"trade_schedules\": [\n        {\n          \"begin_time\": \"04:00:00\",\n          \"end_time\": \"09:30:00\",\n          \"type\": \"PreTrade\"\n        },\n        {\n          \"begin_time\": \"09:30:00\",\n          \"end_time\": \"16:00:00\",\n          \"type\": \"NormalTrade\"\n        },\n        {\n          \"begin_time\": \"16:00:00\",\n          \"end_time\": \"20:00:00\",\n          \"type\": \"PostTrade\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.infoway.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0a1abd98-7827-4e8a-8aff-f0bb2e95bbb3",
+    "name": "REST Common API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/<page>.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.",
+      "type": "text/plain"
+    }
+  }
+}

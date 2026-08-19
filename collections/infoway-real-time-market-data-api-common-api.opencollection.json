@@ -1,0 +1,214 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "REST Common API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Common",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_commonbatch_kline{klineType}{klineNum}{codes}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/common/batch_kline/:klineType/:klineNum/:codes",
+            "params": [
+              {
+                "name": "klineType",
+                "value": "",
+                "type": "path",
+                "description": "kline类型，多个用,间隔，参考上面的kline类型"
+              },
+              {
+                "name": "klineNum",
+                "value": "",
+                "type": "path",
+                "description": "最近多少根k线，最大支持500"
+              },
+              {
+                "name": "codes",
+                "value": "",
+                "type": "path",
+                "description": "标的代码，最大支持100"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_commonbatch_depth{codes}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/common/batch_depth/:codes",
+            "params": [
+              {
+                "name": "codes",
+                "value": "",
+                "type": "path",
+                "description": "标的列表，多个用,间隔，最大支持100个标的"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_commonbatch_trade{codes}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/common/batch_trade/:codes",
+            "params": [
+              {
+                "name": "codes",
+                "value": "",
+                "type": "path",
+                "description": "标的列表，多个用,间隔，最大支持100个标的"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_commonbasicmarketstrading_days",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/common/basic/markets/trading_days",
+            "params": [
+              {
+                "name": "market",
+                "value": "",
+                "type": "query",
+                "description": "市场"
+              },
+              {
+                "name": "beginDay",
+                "value": "",
+                "type": "query",
+                "description": "开始日期"
+              },
+              {
+                "name": "endDay",
+                "value": "",
+                "type": "query",
+                "description": "结束日期"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_symbolsinfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/common/basic/symbols/info",
+            "params": [
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "标的列表"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "标的类型"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_commonbasicsymbols",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/common/basic/symbols",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "标的类型，支持以下值：<br>- 股票类型：<br>  - `STOCK_US` (美股)<br>  - `STOCK_CN` (A股)<br>  - `STOCK_HK` (港股)<br>- 其他类型：<br>  - `FUTURES` (期货)<br>  - `FOREX` (外汇)<br>  - `ENERGY` (能源)<br>  - `METAL` (金属)<br>  - `CRYPTO` (加密货币)"
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "标的列表，多个用,隔开"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_commonbaiscmarkets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.infoway.io/common/basic/markets",
+            "auth": {
+              "type": "apikey",
+              "key": "apiKey",
+              "value": "{{apiKey}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

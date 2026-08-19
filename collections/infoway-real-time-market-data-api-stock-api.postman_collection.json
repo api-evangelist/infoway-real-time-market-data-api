@@ -1,0 +1,393 @@
+{
+  "item": [
+    {
+      "id": "a1dce0c0-4366-42f9-8e72-7b555c04a182",
+      "name": "Stock",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc5a202f-bf2a-48c7-9093-037950f4a6ac",
+          "name": "get stockbatch kline{kline Type}{kline Num}{codes}",
+          "request": {
+            "name": "get stockbatch kline{kline Type}{kline Num}{codes}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stock",
+                "batch_kline",
+                ":klineType",
+                ":klineNum",
+                ":codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "1",
+                  "key": "klineType",
+                  "description": "(Required) kline类型，多个用,间隔，参考上面的kline类型"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "10",
+                  "key": "klineNum",
+                  "description": "(Required) 最近多少根k线，最大支持500"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "002594.SZ,00285.HK,TSLA.US",
+                  "key": "codes",
+                  "description": "(Required) 标的代码，最大支持100"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2539b0d5-bb46-48af-be36-30071f811a9e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stock",
+                    "batch_kline",
+                    ":klineType",
+                    ":klineNum",
+                    ":codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "1",
+                      "key": "klineType",
+                      "description": "(Required) kline类型，多个用,间隔，参考上面的kline类型"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "klineNum",
+                      "description": "(Required) 最近多少根k线，最大支持500"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "002594.SZ,00285.HK,TSLA.US",
+                      "key": "codes",
+                      "description": "(Required) 标的代码，最大支持100"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84f1269f-a441-487e-98be-150e4f505b86",
+          "name": "get stockbatch depth{codes}",
+          "request": {
+            "name": "get stockbatch depth{codes}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stock",
+                "batch_depth",
+                ":codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "002594.SZ,00285.HK,TSLA.US,AUDCAD,HK50,XNIUSD",
+                  "key": "codes",
+                  "description": "(Required) 标的列表，多个用,间隔"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "00d9aff6-7c3a-4dfa-ad99-215ed03a2cc1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stock",
+                    "batch_depth",
+                    ":codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "002594.SZ,00285.HK,TSLA.US,AUDCAD,HK50,XNIUSD",
+                      "key": "codes",
+                      "description": "(Required) 标的列表，多个用,间隔"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ret\": 200,\n  \"msg\": \"success\",\n  \"traceId\": \"972c7bdd-a151-4a13-b4a1-a24a30c65783\",\n  \"data\": [\n    {\n      \"s\": \"00285.HK\",\n      \"t\": 1747382976831,\n      \"a\": [\n        [\n          \"34.650\",\n          \"34.700\",\n          \"34.750\",\n          \"34.800\",\n          \"34.850\",\n          \"34.900\",\n          \"34.950\",\n          \"35.000\",\n          \"35.050\",\n          \"35.100\"\n        ],\n        [\n          \"44000\",\n          \"44500\",\n          \"225500\",\n          \"124000\",\n          \"147500\",\n          \"135500\",\n          \"65000\",\n          \"111000\",\n          \"39500\",\n          \"124500\"\n        ]\n      ],\n      \"b\": [\n        [\n          \"34.600\",\n          \"34.550\",\n          \"34.500\",\n          \"34.450\",\n          \"34.400\",\n          \"34.350\",\n          \"34.300\",\n          \"34.250\",\n          \"34.200\",\n          \"34.150\"\n        ],\n        [\n          \"109500\",\n          \"39500\",\n          \"130500\",\n          \"89000\",\n          \"144000\",\n          \"246500\",\n          \"231500\",\n          \"83000\",\n          \"224000\",\n          \"22000\"\n        ]\n      ]\n    },\n    {\n      \"s\": \"TSLA.US\",\n      \"t\": 1746955123066,\n      \"a\": null,\n      \"b\": null\n    },\n    {\n      \"s\": \"002594.SZ\",\n      \"t\": 1747378802012,\n      \"a\": [\n        [\n          \"389.17\",\n          \"389.45\",\n          \"389.50\",\n          \"389.57\",\n          \"389.69\"\n        ],\n        [\n          \"60\",\n          \"6\",\n          \"1\",\n          \"1\",\n          \"8\"\n        ]\n      ],\n      \"b\": [\n        [\n          \"389.16\",\n          \"389.09\",\n          \"389.05\",\n          \"389.02\",\n          \"389.01\"\n        ],\n        [\n          \"6\",\n          \"1\",\n          \"1\",\n          \"1\",\n          \"10\"\n        ]\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75c60bf1-d384-40c6-a078-e9dc56b1025f",
+          "name": "get stockbatch trade{codes}",
+          "request": {
+            "name": "get stockbatch trade{codes}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stock",
+                "batch_trade",
+                ":codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "002594.SZ,00285.HK,TSLA.US,AUDCAD,HK50,XNIUSD",
+                  "key": "codes",
+                  "description": "(Required) 标的列表，多个用,间隔"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apiKey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2fc5a7b0-cf1d-409f-b01d-092bce839ddb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stock",
+                    "batch_trade",
+                    ":codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "002594.SZ,00285.HK,TSLA.US,AUDCAD,HK50,XNIUSD",
+                      "key": "codes",
+                      "description": "(Required) 标的列表，多个用,间隔"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ret\": 200,\n  \"msg\": \"success\",\n  \"traceId\": \"c49a0866-c551-4951-927e-fe6a55c9fa53\",\n  \"data\": [\n    {\n      \"s\": \"00285.HK\",\n      \"t\": 1750147730935,\n      \"p\": \"31.350\",\n      \"v\": \"171500\",\n      \"vw\": \"5376525.000\",\n      \"td\": 0\n    },\n    {\n      \"s\": \"TSLA.US\",\n      \"t\": 1750177279200,\n      \"p\": \"320.960\",\n      \"v\": \"100\",\n      \"vw\": \"32096.000\",\n      \"td\": 0\n    },\n    {\n      \"s\": \"002594.SZ\",\n      \"t\": 1750143600999,\n      \"p\": \"343.74\",\n      \"v\": \"1395\",\n      \"vw\": \"479517.30\",\n      \"td\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.infoway.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "105fd232-a0f1-4fd0-8d6c-a048ab960401",
+    "name": "REST Stock API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/<page>.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,457 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: REST Common API
+  description: Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/<page>.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.
+servers:
+- url: https://data.infoway.io
+tags:
+- name: Common
+paths:
+  /common/batch_kline/{klineType}/{klineNum}/{codes}:
+    get:
+      description: ''
+      operationId: get_commonbatch_kline{klineType}{klineNum}{codes}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value:
+                    ret: 200
+                    msg: success
+                    traceId: 43fe7163-abb2-4a59-b6b2-2af4dc8c4141
+                    data:
+                    - s: XAUAUD
+                      respList:
+                      - t: '1750177320'
+                        h: '5190.07400'
+                        o: '5187.17600'
+                        l: '5187.17600'
+                        c: '5190.07400'
+                        v: '7.0'
+                        vw: '36324.7220'
+                        pc: 0.07%
+                        pca: '3.78600'
+                      - t: '1750177260'
+                        h: '5187.41400'
+                        o: '5186.28800'
+                        l: '5186.28800'
+                        c: '5187.41400'
+                        v: '13.0'
+                        vw: '67425.1220'
+                        pc: 0.01%
+                        pca: '0.52400'
+                    - s: USDCNY
+                      respList:
+                      - t: '1750175580'
+                        h: '7.18400'
+                        o: '7.18400'
+                        l: '7.18400'
+                        c: '7.18400'
+                        v: '1.0'
+                        vw: '7.1840'
+                        pc: 0.00%
+                        pca: '0.00030'
+                      - t: '1750175280'
+                        h: '7.18370'
+                        o: '7.18370'
+                        l: '7.18370'
+                        c: '7.18370'
+                        v: '1.0'
+                        vw: '7.18370'
+                        pc: 0.00%
+                        pca: '0.00010'
+                    - s: CN50
+                      respList:
+                      - t: '1750177320'
+                        h: '13441.17000'
+                        o: '13441.17000'
+                        l: '13440.17000'
+                        c: '13440.17000'
+                        v: '2.0'
+                        vw: '26881.340'
+                        pc: -0.01%
+                        pca: '-2.00000'
+                      - t: '1750177260'
+                        h: '13442.17000'
+                        o: '13442.17000'
+                        l: '13441.17000'
+                        c: '13441.17000'
+                        v: '2.0'
+                        vw: '26883.340'
+                        pc: -0.01%
+                        pca: '-1.00000'
+      parameters:
+      - name: klineType
+        in: path
+        required: true
+        description: kline类型，多个用,间隔，参考上面的kline类型
+        schema:
+          type: string
+          default: '1'
+      - name: klineNum
+        in: path
+        required: true
+        description: 最近多少根k线，最大支持500
+        schema:
+          type: string
+          default: '10'
+      - name: codes
+        in: path
+        required: true
+        description: 标的代码，最大支持100
+        schema:
+          type: string
+          default: USDCNY,XAUAUD,CN50
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Common
+  /common/batch_depth/{codes}:
+    get:
+      description: ''
+      operationId: get_commonbatch_depth{codes}
+      responses:
+        '200':
+          description: ''
+      parameters:
+      - name: codes
+        in: path
+        required: true
+        description: 标的列表，多个用,间隔，最大支持100个标的
+        schema:
+          type: string
+          default: USDCNY,XAUAUD,CN50
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Common
+  /common/batch_trade/{codes}:
+    get:
+      description: ''
+      operationId: get_commonbatch_trade{codes}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value:
+                    ret: 200
+                    msg: success
+                    traceId: 27bdafb1-c735-4499-aad1-553820284895
+                    data:
+                    - s: XAUAUD
+                      t: 1750177346999
+                      p: '5188.211'
+                      v: '3.0'
+                      vw: '15564.6330'
+                      td: 0
+                    - s: USDCNY
+                      t: 1750175583999
+                      p: '7.184'
+                      v: '1.0'
+                      vw: '7.1840'
+                      td: 0
+                    - s: CN50
+                      t: 1750177343999
+                      p: '13441.17'
+                      v: '1.0'
+                      vw: '13441.170'
+                      td: 0
+      parameters:
+      - name: codes
+        in: path
+        required: true
+        description: 标的列表，多个用,间隔，最大支持100个标的
+        schema:
+          type: string
+          default: USDCNY,XAUAUD,CN50
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Common
+  /common/basic/markets/trading_days:
+    get:
+      description: ''
+      operationId: get_commonbasicmarketstrading_days
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value:
+                    ret: 200
+                    msg: success
+                    traceId: 46fbf427-a30e-48ff-8760-9fb20025c667
+                    data:
+                      trade_days:
+                      - '20230102'
+                      - '20230103'
+                      - '20230104'
+                      - '20230105'
+                      - '20230106'
+                      - '20230109'
+                      - '20230110'
+                      - '20230111'
+                      - '20230112'
+                      - '20230113'
+                      - '20230116'
+                      - '20230117'
+                      - '20230118'
+                      - '20230119'
+                      - '20230120'
+                      - '20230123'
+                      - '20230124'
+                      - '20230125'
+                      - '20230126'
+                      - '20230127'
+                      - '20230130'
+                      - '20230131'
+                      - '20230201'
+                      - '20230202'
+                      - '20230203'
+                      - '20230206'
+                      - '20230207'
+                      - '20230208'
+                      - '20230209'
+                      - '20230210'
+                      - '20230213'
+                      - '20230214'
+                      - '20230215'
+                      - '20230216'
+                      - '20230217'
+                      - '20230220'
+                      - '20230221'
+                      - '20230222'
+                      - '20230223'
+                      - '20230224'
+                      - '20230227'
+                      - '20230228'
+                      - '20230301'
+                      half_trade_days: []
+      parameters:
+      - name: market
+        in: query
+        required: true
+        description: 市场
+        schema:
+          type: string
+          default: CN
+      - name: beginDay
+        in: query
+        required: true
+        description: 开始日期
+        schema:
+          type: string
+          default: '20230101'
+      - name: endDay
+        in: query
+        required: true
+        description: 结束日期
+        schema:
+          type: string
+          default: '20230301'
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Common
+  /common/basic/symbols/info:
+    get:
+      description: ''
+      operationId: get_symbolsinfo
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value:
+                    ret: 200
+                    msg: success
+                    traceId: 52327ed3-e96a-4e9a-a591-e910a0fcc563
+                    data:
+                    - symbol: 000001.SZ
+                      market: CN
+                      name_cn: 平安银行
+                      name_en: PAB
+                      name_hk: 平安銀行
+                      exchange: SZSE
+                      currency: CNY
+                      lot_size: 100
+                      total_shares: 19405918198
+                      circulating_shares: 19405762053
+                      hk_shares: 0
+                      eps: '2.2935271367158012'
+                      eps_ttm: '2.2504474951615995'
+                      bps: '22.4755662447835698'
+                      dividend_yield: '0.9649999999963929'
+                      stock_derivatives: ''
+                      board: SZMainConnect
+                    - symbol: 000002.SZ
+                      market: CN
+                      name_cn: 万科A
+                      name_en: Vanke
+                      name_hk: 萬科A
+                      exchange: SZSE
+                      currency: CNY
+                      lot_size: 100
+                      total_shares: 11930709471
+                      circulating_shares: 9724196533
+                      hk_shares: 0
+                      eps: '-4.147148946357911'
+                      eps_ttm: '-4.6403502137102706'
+                      bps: '16.4892858366243256'
+                      dividend_yield: '0'
+                      stock_derivatives: ''
+                      board: SZMainConnect
+      parameters:
+      - name: symbols
+        in: query
+        required: true
+        description: 标的列表
+        schema:
+          type: string
+          default: 000001.SZ,000002.SZ
+      - name: type
+        in: query
+        required: true
+        description: 标的类型
+        schema:
+          type: string
+          default: STOCK_CN
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Common
+  /common/basic/symbols:
+    get:
+      description: ''
+      operationId: get_commonbasicsymbols
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value:
+                    ret: 200
+                    msg: success
+                    traceId: ed8a84d9-4575-4077-bc1c-31b17d0c8977
+                    data:
+                    - symbol: .DJI.US
+                      name_cn: 道琼斯指数
+                      name_hk: 道瓊斯指數
+                      name_en: Dow Jones Industrial Average
+                    - symbol: .IXIC.US
+                      name_cn: 纳斯达克综合指数
+                      name_hk: 納斯達克綜合指數
+                      name_en: NASDAQ Composite Index
+      parameters:
+      - name: type
+        in: query
+        required: true
+        description: 标的类型，支持以下值：<br>- 股票类型：<br>  - `STOCK_US` (美股)<br>  - `STOCK_CN` (A股)<br>  - `STOCK_HK` (港股)<br>- 其他类型：<br>  - `FUTURES` (期货)<br>  - `FOREX` (外汇)<br>  - `ENERGY` (能源)<br>  - `METAL` (金属)<br>  - `CRYPTO` (加密货币)
+        schema:
+          type: string
+          default: STOCK_US
+      - name: symbols
+        in: query
+        required: false
+        description: 标的列表，多个用,隔开
+        schema:
+          type: string
+          default: .DJI.US,.IXIC.US
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Common
+  /common/basic/markets:
+    get:
+      description: ''
+      operationId: get_commonbaiscmarkets
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value:
+                    ret: 200
+                    msg: success
+                    traceId: 7b32f9db-852b-4234-aafb-5766f9ba385e
+                    data:
+                    - market: CN
+                      remark: A 股市场
+                      trade_schedules:
+                      - begin_time: 09:30:00
+                        end_time: '11:30:00'
+                        type: NormalTrade
+                      - begin_time: '13:00:00'
+                        end_time: '14:57:00'
+                        type: NormalTrade
+                    - market: HK
+                      remark: 港股市场
+                      trade_schedules:
+                      - begin_time: 09:30:00
+                        end_time: '12:00:00'
+                        type: NormalTrade
+                      - begin_time: '13:00:00'
+                        end_time: '16:00:00'
+                        type: NormalTrade
+                    - market: US
+                      remark: 美股市场
+                      trade_schedules:
+                      - begin_time: 04:00:00
+                        end_time: 09:30:00
+                        type: PreTrade
+                      - begin_time: 09:30:00
+                        end_time: '16:00:00'
+                        type: NormalTrade
+                      - begin_time: '16:00:00'
+                        end_time: '20:00:00'
+                        type: PostTrade
+      parameters: []
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Common
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: apiKey
+x-evidence:
+  harvested: '2026-08-09'
+  method: searched
+  sources:
+  - https://infoway.readme.io/reference/get-crypto-candles.md
+  - https://infoway.readme.io/reference/get-crypto-orderbook.md
+  - https://infoway.readme.io/reference/get-crypto-trades.md
+  - https://infoway.readme.io/reference/get-forex-candles.md
+  - https://infoway.readme.io/reference/get-forex-depth.md
+  - https://infoway.readme.io/reference/get-forex-trades.md
+  - https://infoway.readme.io/reference/get-market-trading-days.md
+  - https://infoway.readme.io/reference/get-stock-candles.md
+  - https://infoway.readme.io/reference/get-stock-orderbook.md
+  - https://infoway.readme.io/reference/get-stock-trades.md
+  - https://infoway.readme.io/reference/get-symbol-basic-info.md
+  - https://infoway.readme.io/reference/get-symbol-list.md
+  - https://infoway.readme.io/reference/get-symbol-market-info.md
+  note: Each source page returned HTTP 200 and embedded a complete OpenAPI 3.0.0 document for one operation.
