@@ -34,11 +34,11 @@ tags:
   - commodities-api
   - futures-api
   - Market Data
-  - real-time-data
-  - websocket
+  - Real-Time Data
+  - WebSocket
   - Financial Data
   - Fintech
-  - historical-data
+  - Historical Data
 tags_raw:
   - stock-api
   - forex-api
@@ -62,8 +62,8 @@ apis:
   humanURL: https://docs.infoway.io/websocket-api/endpoints.md
   baseURL: wss://data.infoway.io/ws
   tags:
-  - websocket
-  - real-time-data
+  - WebSocket
+  - Real-Time Data
   - Market Data
   - stock-api
   - crypto-api
@@ -98,7 +98,7 @@ apis:
   - Agents
   - Market Data
   - Financial Data
-  - real-time-data
+  - Real-Time Data
   tags_raw:
   - mcp
   - agents
