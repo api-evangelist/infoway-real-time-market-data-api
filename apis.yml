@@ -186,6 +186,8 @@ generated:
   confidence: 93
   at: '2026-08-08T07:31:04.745Z'
 common:
+- type: Website
+  url: https://www.infoway.io/
 - type: Overlay
   url: overlays/infoway-real-time-market-data-api-openapi-overlay.yaml
 - type: IssueTracker
