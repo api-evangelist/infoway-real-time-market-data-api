@@ -166,6 +166,8 @@ apis:
   humanURL: https://infoway.readme.io/reference/quick-start
   baseURL: https://data.infoway.io
   tags:
+  - Stocks
+  tags_raw:
   - Stock
   properties:
   - type: OpenAPI
