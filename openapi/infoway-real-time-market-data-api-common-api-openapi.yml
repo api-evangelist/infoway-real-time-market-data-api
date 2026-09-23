@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   version: 1.0.0
   title: REST Common API
-  description: Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/<page>.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.
+  description: Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.
 servers:
 - url: https://data.infoway.io
 tags:
@@ -111,6 +111,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Common
+      summary: Get commonbatch kline{kline type}{kline num}{codes}
+      x-summary-source: derived
   /common/batch_depth/{codes}:
     get:
       description: ''
@@ -130,6 +132,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Common
+      summary: Get commonbatch depth{codes}
+      x-summary-source: derived
   /common/batch_trade/{codes}:
     get:
       description: ''
@@ -177,6 +181,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Common
+      summary: Get commonbatch trade{codes}
+      x-summary-source: derived
   /common/basic/markets/trading_days:
     get:
       description: ''
@@ -265,6 +271,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Common
+      summary: Get commonbasicmarketstrading days
+      x-summary-source: derived
   /common/basic/symbols/info:
     get:
       description: ''
@@ -335,6 +343,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Common
+      summary: Get symbolsinfo
+      x-summary-source: derived
   /common/basic/symbols:
     get:
       description: ''
@@ -379,6 +389,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Common
+      summary: Get commonbasicsymbols
+      x-summary-source: derived
   /common/basic/markets:
     get:
       description: ''
@@ -431,6 +443,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Common
+      summary: Get commonbaiscmarkets
+      x-summary-source: derived
 components:
   securitySchemes:
     ApiKeyAuth:

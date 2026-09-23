@@ -1,9 +1,7 @@
 {
   "provider": "infoway-real-time-market-data-api",
   "sources": [
-    "infoway-real-time-market-data-api-common-api-openapi.yml",
-    "infoway-real-time-market-data-api-crypto-api-openapi.yml",
-    "infoway-real-time-market-data-api-stock-api-openapi.yml"
+    "_original/infoway-real-time-market-data-api-openapi.yml"
   ],
   "outputs": [
     "infoway-real-time-market-data-api-common-api-openapi.yml",
@@ -14,10 +12,29 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "infoway-real-time-market-data-api-common-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
-    "infoway-real-time-market-data-api-crypto-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
-    "infoway-real-time-market-data-api-stock-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "infoway-real-time-market-data-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /crypto/batch_kline/{klineType}/{klineNum}/{codes} -> Crypto",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /crypto/batch_depth/{codes} -> Crypto",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /crypto/batch_trade/{codes} -> Crypto",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /common/batch_kline/{klineType}/{klineNum}/{codes} -> Common",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /common/batch_depth/{codes} -> Common",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /common/batch_trade/{codes} -> Common",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /common/basic/markets/trading_days -> Common",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /stock/batch_kline/{klineType}/{klineNum}/{codes} -> Stock",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /stock/batch_depth/{codes} -> Stock",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /stock/batch_trade/{codes} -> Stock",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /common/basic/symbols/info -> Common",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /common/basic/symbols -> Common",
+    "infoway-real-time-market-data-api-openapi.yml: tagged paths GET /common/basic/markets -> Common",
+    "infoway-real-time-market-data-api-openapi.yml: declared missing tag: Common",
+    "infoway-real-time-market-data-api-openapi.yml: declared missing tag: Crypto",
+    "infoway-real-time-market-data-api-openapi.yml: declared missing tag: Stock",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "infoway-real-time-market-data-api-common-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "infoway-real-time-market-data-api-crypto-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "infoway-real-time-market-data-api-stock-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

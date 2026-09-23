@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   version: 1.0.0
   title: REST Crypto API
-  description: Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/<page>.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.
+  description: Infoway real-time market data REST API. Assembled verbatim from the 13 per-endpoint OpenAPI 3.0.0 definitions the provider publishes on its ReadMe developer hub (https://infoway.readme.io/reference/.md). Operations, parameters, examples and security schemes are unmodified; only the documents were merged into one file.
 servers:
 - url: https://data.infoway.io
 tags:
@@ -41,6 +41,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Crypto
+      summary: Get cryptobatch kline{kline type}{kline num}{codes}
+      x-summary-source: derived
   /crypto/batch_depth/{codes}:
     get:
       description: ''
@@ -60,6 +62,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Crypto
+      summary: Get cryptobatch depth{codes}
+      x-summary-source: derived
   /crypto/batch_trade/{codes}:
     get:
       description: ''
@@ -101,6 +105,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Crypto
+      summary: Get cryptobatch trade{codes}
+      x-summary-source: derived
 components:
   securitySchemes:
     ApiKeyAuth:
