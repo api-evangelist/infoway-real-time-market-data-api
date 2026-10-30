@@ -1,4 +1,4 @@
-# Infoway Real-time Market Data API (infoway-real-time-market-data-api)
+# Infoway Real-time Market Data API
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,178 +66,137 @@
 
 Infoway is a real-time and historical financial market-data provider covering equities (US, Hong Kong, China A-shares, Japan, South Korea, India), forex, cryptocurrencies across 30+ exchanges, and commodities/futures. It ships two surfaces from the host data.infoway.io: a REST/HTTP API for symbol reference data, trading calendars, last-trade ticks, order-book depth and candlestick (K-line) history, and a WebSocket streaming API that pushes trades, depth, candles and multilingual news with millisecond latency. Both authenticate with a single API key whose entitlements follow the plan it was issued against (Free through Professional). Infoway publishes per-endpoint OpenAPI 3.0.0 definitions on its ReadMe developer hub, official Python, Node.js and Java SDKs, an llms.txt documentation index, and a stdio MCP server exposing 17 financial-data tools with a provider-authored Agent Skill.
 
-**APIs.json:** [https://infoway-real-time-market-data-api.apievangelist.com/apis.yml](https://infoway-real-time-market-data-api.apievangelist.com/apis.yml)
+**Areas:** stock-api · forex-api · crypto-api · commodities-api · futures-api · Market Data · Real-Time Data · WebSocket · Financial Data · Fintech · Historical Data · Real-Time
 
-## Tags
+## Infoway Real-time Market Data API on APIs.io
 
-- stock-api
-- forex-api
-- crypto-api
-- commodities-api
-- futures-api
-- market-data
-- real-time-data
-- websocket
-- financial-data
-- fintech
-- historical-data
+Everything profiled for Infoway Real-time Market Data API is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/infoway-real-time-market-data-api/](https://apis.io/providers/infoway-real-time-market-data-api/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-08-08
-- **Modified:** 2026-08-09
+- [Infoway WebSocket Streaming API](https://apis.io/apis/infoway-real-time-market-data-api/infoway-websocket-streaming-api/) — Persistent WebSocket connection for real-time trades, order-book depth, candlesticks and multilingual news. Integer protocol-code framing (10000 subscribe…
+- [Infoway Financial Data MCP Server](https://apis.io/apis/infoway-real-time-market-data-api/infoway-financial-data-mcp-server/) — Official Model Context Protocol server (PyPI infoway-mcp-server) exposing 17 tools over stdio for real-time quotes, depth, K-line, market temperature and…
+- [Infoway Real-time Market Data API Common API](https://apis.io/apis/infoway-real-time-market-data-api/infoway-real-time-market-data-api-common-api/) — The Common API from Infoway Real-time Market Data API — 7 operation(s) for common.
+- [Infoway Real-time Market Data API Crypto API](https://apis.io/apis/infoway-real-time-market-data-api/infoway-real-time-market-data-api-crypto-api/) — The Crypto API from Infoway Real-time Market Data API — 3 operation(s) for crypto.
+- [Infoway Real-time Market Data API Stock API](https://apis.io/apis/infoway-real-time-market-data-api/infoway-real-time-market-data-api-stock-api/) — The Stock API from Infoway Real-time Market Data API — 3 operation(s) for stock.
 
-## APIs
+### Published properties
 
-### Infoway WebSocket Streaming API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Persistent WebSocket connection for real-time trades, order-book depth, candlesticks and multilingual news. Integer protocol-code framing (10000 subscribe trade, 10002 trade push, 10003/10005 depth, 10006/10008 candles, 10020/10022 news, 11000-11002 unsubscribe) with a client-supplied trace id and a mandatory heartbeat (code 10010) at least once per minute. API key is supplied as the apikey query parameter on the connection URL.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://docs.infoway.io/websocket-api/endpoints.md](https://docs.infoway.io/websocket-api/endpoints.md)
-- **Base URL:** `wss://data.infoway.io/ws`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Infoway WebSocket Streaming API](https://apis.io/asyncapis/infoway-real-time-market-data-api/infoway-real-time-market-data-api-streaming-asyncapi/)
 
-- websocket
-- real-time-data
-- market-data
-- stock-api
-- crypto-api
-- forex-api
-- financial-data
+#### Event channels (1)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [AsyncAPI](asyncapi/infoway-real-time-market-data-api-streaming-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Documentation](https://docs.infoway.io/websocket-api/endpoints.md)
-- [API Reference](https://infoway.readme.io/reference/ws-subscription)
-- [Postman Collection](collections/infoway-real-time-market-data-api-common-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/infoway-real-time-market-data-api-common-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/infoway-real-time-market-data-api-crypto-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/infoway-real-time-market-data-api-crypto-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/infoway-real-time-market-data-api-stock-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/infoway-real-time-market-data-api-stock-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [/ws](https://apis.io/channels/infoway-real-time-market-data-api/ws/)
 
-### Infoway Financial Data MCP Server
+#### MCP servers (1)
 
-Official Model Context Protocol server (PyPI infoway-mcp-server) exposing 17 tools over stdio for real-time quotes, depth, K-line, market temperature and breadth, global indexes, industry and concept sectors, plate members and heatmaps, and single-stock fundamentals (company overview, valuation, analyst ratings, panorama, price drivers). Authenticated with the same API key via the INFOWAY_API_KEY environment variable. Local/stdio only — there is no hosted remote endpoint.
+Model Context Protocol servers that expose the API to agents.
 
-- **Human URL:** [https://docs.infoway.io/sdk-and-tools/mcp-server.md](https://docs.infoway.io/sdk-and-tools/mcp-server.md)
-- **Base URL:** `https://data.infoway.io`
+- [infoway](https://apis.io/servers/infoway-real-time-market-data-api/infoway/)
 
-#### Tags
+#### Collections (3)
 
-- mcp
-- agents
-- market-data
-- financial-data
-- real-time-data
+Postman and Open Collection request collections.
 
-#### Properties
+- [REST Common API](https://apis.io/collections/infoway-real-time-market-data-api/open-infoway-real-time-market-data-api-common-api/)
+- [REST Crypto API](https://apis.io/collections/infoway-real-time-market-data-api/open-infoway-real-time-market-data-api-crypto-api/)
+- [REST Stock API](https://apis.io/collections/infoway-real-time-market-data-api/open-infoway-real-time-market-data-api-stock-api/)
 
-- [M C P Server](mcp/infoway-real-time-market-data-api-mcp.yml)
-- [Tool Crosswalk](mcp/infoway-real-time-market-data-api-tool-crosswalk.yml)
-- [Documentation](https://docs.infoway.io/sdk-and-tools/mcp-server.md)
-- [Source Code](https://github.com/infoway-api/infoway-mcp-server)
-- [Postman Collection](collections/infoway-real-time-market-data-api-common-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/infoway-real-time-market-data-api-common-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/infoway-real-time-market-data-api-crypto-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/infoway-real-time-market-data-api-crypto-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/infoway-real-time-market-data-api-stock-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/infoway-real-time-market-data-api-stock-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Overlays (1)
 
-### Infoway Real-time Market Data API Common API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-The Common API from Infoway Real-time Market Data API — 7 operation(s) for common.
+- [Infoway Real Time Market Data Api Openapi Overlay](https://apis.io/overlays/infoway-real-time-market-data-api/infoway-real-time-market-data-api-openapi-overlay/)
 
-- **Human URL:** [https://infoway.readme.io/reference/quick-start](https://infoway.readme.io/reference/quick-start)
-- **Base URL:** `https://data.infoway.io`
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Common
+- [Infoway Real Time Market Data Api Authentication](https://apis.io/security/infoway-real-time-market-data-api/infoway-real-time-market-data-api-authentication/)
+- [Infoway Real Time Market Data Api Domain Security](https://apis.io/security/infoway-real-time-market-data-api/infoway-real-time-market-data-api-domain-security/)
 
-#### Properties
+#### Rate limits (1)
 
-- [OpenAPI](openapi/infoway-real-time-market-data-api-common-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/infoway-real-time-market-data-api-common-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/infoway-real-time-market-data-api-common-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.infoway.io/rest-api/http-endpoints)
-- [API Reference](https://infoway.readme.io/reference/quick-start)
-- [L L Ms Txt](https://docs.infoway.io/llms.txt)
+Published request limits.
 
-### Infoway Real-time Market Data API Crypto API
+- [Infoway Real Time Market Data Api Rate Limits](https://apis.io/rate-limits/infoway-real-time-market-data-api/infoway-real-time-market-data-api-rate-limits/)
 
-The Crypto API from Infoway Real-time Market Data API — 3 operation(s) for crypto.
+## Where to find this API
 
-- **Human URL:** [https://infoway.readme.io/reference/quick-start](https://infoway.readme.io/reference/quick-start)
-- **Base URL:** `https://data.infoway.io`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Crypto
-
-#### Properties
-
-- [OpenAPI](openapi/infoway-real-time-market-data-api-crypto-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/infoway-real-time-market-data-api-crypto-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/infoway-real-time-market-data-api-crypto-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.infoway.io/rest-api/http-endpoints)
-- [API Reference](https://infoway.readme.io/reference/quick-start)
-- [L L Ms Txt](https://docs.infoway.io/llms.txt)
-
-### Infoway Real-time Market Data API Stock API
-
-The Stock API from Infoway Real-time Market Data API — 3 operation(s) for stock.
-
-- **Human URL:** [https://infoway.readme.io/reference/quick-start](https://infoway.readme.io/reference/quick-start)
-- **Base URL:** `https://data.infoway.io`
-
-#### Tags
-
-- Stock
-
-#### Properties
-
-- [OpenAPI](openapi/infoway-real-time-market-data-api-stock-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/infoway-real-time-market-data-api-stock-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/infoway-real-time-market-data-api-stock-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.infoway.io/rest-api/http-endpoints)
-- [API Reference](https://infoway.readme.io/reference/quick-start)
-- [L L Ms Txt](https://docs.infoway.io/llms.txt)
-
-## Common Properties
-
-- [Overlay](overlays/infoway-real-time-market-data-api-openapi-overlay.yaml)
-- [Issue Tracker](https://github.com/infoway-api/infoway-mcp-server/issues)
-- [Domain Security](security/infoway-real-time-market-data-api-domain-security.yml)
-- [Authentication](authentication/infoway-real-time-market-data-api-authentication.yml)
-- [Packages](packages/infoway-real-time-market-data-api-packages.yml)
-- [S D Ks](packages/infoway-real-time-market-data-api-packages.yml)
-- [Conventions](conventions/infoway-real-time-market-data-api-conventions.yml)
-- [Error Catalog](errors/infoway-real-time-market-data-api-error-codes.yml)
-- [Rate Limits](rate-limits/infoway-real-time-market-data-api-rate-limits.yml)
-- [Lifecycle](lifecycle/infoway-real-time-market-data-api-lifecycle.yml)
-- [Status Page](https://status.infoway.io)
-- [Conformance](conformance/infoway-real-time-market-data-api-conformance.yml)
-- [Data Model](data-model/infoway-real-time-market-data-api-data-model.yml)
-- [L L Ms Txt](llms/infoway-real-time-market-data-api-llms.txt)
-- [Agent Skill](skills/_index.yml)
-- [Developer Portal](https://docs.infoway.io/)
+- [Website](https://www.infoway.io/)
 - [Documentation](https://docs.infoway.io/)
-- [API Reference](https://infoway.readme.io/reference/quick-start)
-- [Getting Started](https://docs.infoway.io/getting-started/quick-start)
+- [Getting started](https://docs.infoway.io/getting-started/quick-start)
+- [API reference](https://infoway.readme.io/reference/quick-start)
+- [Pricing](https://infoway.io/en#pricing)
+- [Sign up](https://infoway.io/en/create-account)
 - [Support](https://infoway.io/en/feedback)
 - [Blog](https://blog.infoway.io/en/)
-- [GitHub Organization](https://github.com/infoway-api)
-- [Pricing](https://infoway.io/en#pricing)
-- [Sign Up](https://infoway.io/en/create-account)
-- [Login](https://infoway.io/en/login)
-- [Terms of Service](https://infoway.io/en/terms-and-conditions)
-- [Privacy Policy](https://infoway.io/en/privacy-policy)
+- [Terms of service](https://infoway.io/en/terms-and-conditions)
+- [Privacy policy](https://infoway.io/en/privacy-policy)
+- [GitHub](https://github.com/infoway-api)
+- [Status](https://status.infoway.io)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Infoway Real-time Market Data API
-**Email:** hi@infoway.io
-**URL:** https://infoway.io/en
+**Kin Score 45.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 51.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 67.9 |
+| Access clarity | 44.7 |
+
+**Agent readiness 40.9** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | na |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 23.1** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/infoway-real-time-market-data-api/](https://apis.io/providers/infoway-real-time-market-data-api/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Infoway Real-time Market Data API: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/infoway-real-time-market-data-api/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
