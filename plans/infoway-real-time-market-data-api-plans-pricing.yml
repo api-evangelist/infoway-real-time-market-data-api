@@ -1,0 +1,89 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://infoway.io/en#pricing
+sources:
+- https://infoway.io/en#pricing
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T161713
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+  managed_tier: Basic
+published: true
+note: Page also mentions Custom Plan and billing periods Monthly/Quarterly-5%/Half-Year-10%/Yearly-20%
+  without separate numeric prices.
+plan_count: 4
+currency: USDT
+plans:
+- name: Free 7-Day Free Trial
+  price_text: FREE
+  period: month
+  included_quota: 'Rate Limits: 60 API calls /min (1/sec); WS Subscriptions: 10; Limited Symbols; Historical
+    Data (Last 6M)'
+- name: Basic
+  price_text: 99 USDT/Month
+  price: 99
+  currency: USDT
+  period: month
+  included_quota: '120 API calls /min (2/sec); WS Subscriptions: 200; WS Connections Qty: 1; Historical
+    Data (Last 1Y)'
+- name: Premium
+  price_text: 199 USDT/Month
+  price: 199
+  currency: USDT
+  period: month
+  included_quota: '600 API calls /min (10/sec); WS Subscriptions: 800; WS Connections Qty: 2; Historical
+    Data (Last 2Y)'
+- name: Professional
+  price_text: 399 USDT/Month
+  price: 399
+  currency: USDT
+  period: month
+  included_quota: '1200 API calls /min (20/sec); WS Subscriptions: 5000; WS Connections Qty: 9; Historical
+    Data (Last 3Y)'
+rate_limit_statements:
+- 60 API calls /min (1/sec)
+- 120 API calls /min (2/sec)
+- 600 API calls /min (10/sec)
+- 1200 API calls /min (20/sec)
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: Free 7-Day Free Trial
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Basic
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Premium
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Professional
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
