@@ -44,10 +44,13 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-02.yml:
+    method: unknown
+    evidence: no authorship recorded
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-10-31T095417.yml:
+  kin/checks-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -104,6 +107,15 @@ artifacts:
   kin/score-2026-10-31T095417.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-01T171331.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-01T200237.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-02T082323.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/infoway-real-time-market-data-api-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -135,6 +147,9 @@ artifacts:
   packages/infoway-real-time-market-data-api-packages.yml:
     method: searched
     evidence: declared in the artifact
+  patterns/infoway-real-time-market-data-api-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/infoway-real-time-market-data-api-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
@@ -143,6 +158,9 @@ artifacts:
     evidence: no authorship recorded
   rate-limits/infoway-real-time-market-data-api-rate-limits.yml:
     method: searched
+    evidence: declared in the artifact
+  rules/infoway-real-time-market-data-api-rules.yml:
+    method: generated
     evidence: declared in the artifact
   security/infoway-real-time-market-data-api-domain-security.yml:
     method: unknown
@@ -155,6 +173,9 @@ artifacts:
     evidence: no authorship recorded
   skills/infoway-real-time-market-data-api-quote-and-kline.md:
     method: generated
+    evidence: declared in the artifact
+  sla/infoway-real-time-market-data-api-sla.yml:
+    method: searched
     evidence: declared in the artifact
   well-known/infoway-real-time-market-data-api-well-known.yml:
     method: unknown
